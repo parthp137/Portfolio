@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <div class="logo">Portfolio</div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#home" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#certifications">Certifications</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div class="container hero-inner fade-up">
+        <div class="hero-text">
+          <p class="mini-title">WEB DEVELOPER</p>
+          <h1>Parth<br>Patwardhan</h1>
+          <h3 class="green hero-subtitle">Full Stack Web Developer</h3>
+          <p class="hero-description">
+            Crafting elegant solutions through clean code and thoughtful design.
+            Specialized in building scalable web applications with modern technologies.
+          </p>
+
+          <div class="btn-group">
+            <a href="#projects" class="btn primary">View Work</a>
+            <a href="#contact" class="btn secondary">Get in Touch</a>
+          </div>
+        </div>
+
+        <div class="hero-media fade-left">
+          <div class="hero-card">
+            <!-- replace src with your real photo -->
+            <img src="images/Profile.jpg" alt="Profile" />
+          </div>
+        </div>
+      </div>
+
+      <div class="scroll-indicator fade-up">
+        <a href="#about" class="scroll-arrow">&#x25BC;</a>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section about">
+      <div class="container fade-up">
+        <p class="mini-title">ABOUT ME</p>
+        <h2>Background</h2>
+        <p class="section-description">
+          I'm a passionate web developer with a strong foundation in both frontend and backend
+          technologies. I love turning complex problems into simple, beautiful, and intuitive designs.
+          When I'm not coding, you'll find me exploring new technologies and contributing to open-source projects.
+        </p>
+
+        <div class="about-grid">
+          <article class="card fade-right">
+            <p class="card-label">Education</p>
+            <p class="card-title">B.E in Information Technology</p>
+            <p class="card-meta">SPPU</p>
+            <p class="card-meta">2023 – 2027</p>
+            <p class="card-body">
+              Focused on software engineering and web technologies with a strong emphasis on
+              modern JavaScript frameworks and cloud-based solutions.
+            </p>
+          </article>
+
+          <article class="card fade-left">
+            <p class="card-label">Experience</p>
+            <p class="card-title">Web Development Intern</p>
+            <p class="card-meta">Prodigy Infotech</p>
+            <p class="card-meta">2025 – Present</p>
+            <p class="card-body">
+              Building responsive web applications, collaborating with design teams, and
+              maintaining existing codebases while implementing new features.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section projects">
+      <div class="container fade-up">
+        <p class="mini-title">PORTFOLIO</p>
+        <h2>Projects</h2>
+        <p class="section-description">
+          A collection of projects that showcase my skills and passion for web development.
+        </p>
+
+        <div class="project-grid">
+          <!-- Project 1 -->
+          <article class="project-card fade-up">
+            <div class="project-image-wrapper">
+            </div>
+            <div class="project-content">
+              <h3>Axion</h3>
+              <p class="project-text">
+                Axion is a front-end web project designed to demonstrate a fully interactive navigation system with smooth scrolling, active section highlighting, mobile responsiveness, and a modern dark-themed interface.
+              </p>
+              <div class="project-tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JS</span>
+              </div>
+              <div class="project-links">
+                <a href="https://parthp137.github.io/PRODIGY_WD_01/" class="project-link">Live Demo</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="project-card fade-up">
+            <div class="project-image-wrapper">
+            </div>
+            <div class="project-content">
+              <h3>Vortex</h3>
+              <p class="project-text">
+                Vortex is a front-end stopwatch project. It provides precise time tracking with lap recording, keyboard shortcuts, responsive UI design, and a polished animated interface.
+              </p>
+              <div class="project-tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JS</span>
+              </div>
+              <div class="project-links">
+                <a href="https://parthp137.github.io/PRODIGY_WD_02/" class="project-link">Live Demo</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="project-card fade-up">
+            <div class="project-image-wrapper">
+            </div>
+            <div class="project-content">
+              <h3>TriStrike</h3>
+              <p class="project-text">
+                TriStrike is a front-end web-based Tic Tac Toe game featuring an intelligent computer opponent, responsive design, smooth UI interactions, and a modern white-orange themed interface
+              </p>
+              <div class="project-tags">
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JS</span>
+              </div>
+              <div class="project-links">
+                <a href="https://parthp137.github.io/PRODIGY_WD_03/" class="project-link">Live Demo</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section skills">
+      <div class="container fade-up">
+        <p class="mini-title">EXPERTISE</p>
+        <h2>Technical Skills</h2>
+
+        <div class="skill-grid">
+          <div class="skill-box fade-up">
+            <div class="skill-icon">&#128187;</div>
+            <p>HTML</p>
+          </div>
+          <div class="skill-box fade-up">
+            <div class="skill-icon">&#128187;</div>
+            <p>CSS</p>
+          </div>
+          <div class="skill-box fade-up">
+            <div class="skill-icon">&#128187;</div>
+            <p>JavaScript</p>
+          </div>
+          <div class="skill-box fade-up">
+            <div class="skill-icon">&#60;/&#62;</div>
+            <p>C</p>
+          </div>
+          <div class="skill-box fade-up">
+            <div class="skill-icon">&#60;/&#62;</div>
+            <p>C++</p>
+          </div>
+          <div class="skill-box fade-up">
+            <div class="skill-icon">&#60;/&#62;</div>
+            <p>Python</p>
+          </div>
+          <div class="skill-box fade-up">
+            <div class="skill-icon">&#128202;</div>
+            <p>SQL</p>
+          </div>
+          <div class="skill-box fade-up">
+            <div class="skill-icon">&#128202;</div>
+            <p>MongoDB</p>
+          </div>
+          <div class="skill-box fade-up">
+            <div class="skill-icon">&#128187;</div>
+            <p>Bootstrap</p>
+          </div>
+          <div class="skill-box fade-up">
+            <div class="skill-icon">&#128187;</div>
+            <p>UI/UX</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section id="certifications" class="section certifications">
+      <div class="container fade-up">
+        <p class="mini-title">ACHIEVEMENTS</p>
+        <h2>Certifications</h2>
+
+        <div class="cert-grid">
+
+          <article class="cert-card fade-up">
+            <i class="fas fa-certificate cert-icon"></i>
+            <h3>Bootstrap Training</h3>
+            <p class="cert-org">EduPyramids, SINE – IIT Bombay</p>
+            <p class="cert-year">Issued Oct 2025</p>
+            <p class="cert-skill">Skills: Bootstrap (Framework)</p>
+            <a href="/certificates/bootstrap.pdf" target="_blank" class="cert-btn">View Certificate</a>
+          </article>
+
+          <article class="cert-card fade-up">
+            <i class="fas fa-certificate cert-icon"></i>
+            <h3>ChatGPT Prompt Engineering</h3>
+            <p class="cert-org">DeepLearning.AI (with OpenAI)</p>
+            <p class="cert-year">Issued Sep 2025</p>
+            <p class="cert-skill">Skills: Generative AI</p>
+            <a href="https://learn.deeplearning.ai/accomplishments/e16d816d-1e40-4fd4-9f2c-8e907acb2327?usp=sharing" target="_blank" class="cert-btn">View Certificate</a>
+          </article>
+
+          <article class="cert-card fade-up">
+            <i class="fas fa-certificate cert-icon"></i>
+            <h3>Advanced C++ Training</h3>
+            <p class="cert-org">IIT Bombay – Spoken Tutorial Project</p>
+            <p class="cert-year">Issued Apr 2025</p>
+            <p class="cert-skill">Skills: C++</p>
+            <a href="/certificates/C++.pdf" target="_blank" class="cert-btn">View Certificate</a>
+          </article>
+
+          <article class="cert-card fade-up">
+            <i class="fas fa-certificate cert-icon"></i>
+            <h3>C Training</h3>
+            <p class="cert-org">IIT Bombay – Spoken Tutorial Project</p>
+            <p class="cert-year">Issued Nov 2024</p>
+            <p class="cert-skill">Skills: C Programming</p>
+            <a href="/certificates/C.pdf" target="_blank" class="cert-btn">View Certificate</a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section contact">
+      <div class="container fade-up">
+        <p class="mini-title">GET IN TOUCH</p>
+        <h2>Let’s Work Together !</h2>
+        <p class="section-description contact-sub">
+          Have a project in mind? I’d love to hear about it. Send me a message and let's create
+          something amazing.
+        </p>
+
+        <div class="contact-card">
+          <form class="contact-form">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input id="name" type="text" placeholder="Your name" />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input id="email" type="email" placeholder="your.email@example.com" />
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" rows="6" placeholder="Tell me about your project..."></textarea>
+            </div>
+            <button type="submit" class="btn primary contact-btn">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-top">
+      <div class="footer-social">
+        <a href="https://github.com/parthp137" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/parth-patwardhan-3a8410338/" target="_blank">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="mailto:parthp130705@gmail.com">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>@ All rights reserved.</span>
+      <span>Designed &amp; built with passion.</span>
+    </div>
+  </div>
+</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
