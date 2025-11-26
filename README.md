@@ -1,4 +1,4 @@
-# Personal Portfolio Website –
+# Personal Portfolio Website 
 
 This project is a front-end portfolio website designed to showcase my skills, projects, certifications, and background as a web developer. It features a modern dark-themed interface with smooth scrolling, animated sections, and a responsive layout. The site is built using HTML, CSS, and JavaScript.
 
