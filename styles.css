@@ -111,12 +111,14 @@ body {
   max-width: 520px;
 }
 
+/* Button group used in this project */
 .btn-group {
   margin-top: 32px;
   display: flex;
   gap: 18px;
 }
 
+/* Generic button base */
 .btn {
   padding: 13px 26px;
   border-radius: 8px;
@@ -152,6 +154,27 @@ body {
   background: rgba(55, 255, 139, 0.08);
 }
 
+/* Resume button (isolated and safe) */
+.btn-resume {
+  padding: 12px 22px;
+  border: 1px solid #00ff66;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #00ff66;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background .18s ease, color .18s ease, box-shadow .18s ease;
+  background: transparent;
+  box-shadow: none;
+}
+.btn-resume:hover,
+.btn-resume:active {
+  background: #00ff66;
+  color: #000;
+}
+
 /* HERO IMAGE CARD (matching template: double border + tilt) */
 .hero-media {
   flex: 0 0 420px;
@@ -165,14 +188,16 @@ body {
   height: 380px;
   border-radius: 26px;
   background: #008705;
+  /* keep existing shadow effect (main card border + strong shadow) */
   box-shadow:
     0 0 0 1px rgba(82, 68, 148, 0.35),
     0 40px 80px rgba(36, 166, 0, 0.9);
   transform: rotate(-3deg);
   overflow: hidden;
+  z-index: 1; /* keep it above its glow pseudo-element */
 }
 
-/* second outline */
+/* second outline (existing design element) */
 .hero-card::before {
   content: "";
   position: absolute;
@@ -183,6 +208,26 @@ body {
   z-index: 0;
 }
 
+/* soft outer green glow placed behind the card */
+.hero-card::after {
+  content: "";
+  position: absolute;
+  top: -28px;
+  left: -28px;
+  right: -28px;
+  bottom: -28px;
+  border-radius: 28px;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(circle at 60% 65%,
+              rgba(55,255,139,0.22) 0%,
+              rgba(55,255,139,0.10) 18%,
+              rgba(55,255,139,0.04) 36%,
+              transparent 58%);
+  filter: blur(10px);
+  transition: opacity .2s ease;
+}
+
 /* image inside */
 .hero-card img {
   width: 120%;
@@ -191,10 +236,9 @@ body {
   position: absolute;
   left: -10%;
   top: -10%;
-  opacity: 1; /* in template the card is mostly solid */
+  opacity: 1;
   z-index: 1;
 }
-
 
 /* SCROLL INDICATOR */
 .scroll-indicator {
@@ -614,4 +658,68 @@ body {
 .cert-btn:hover {
   background: rgba(55, 255, 139, 0.1);
   transform: translateY(-2px);
+}
+
+/* ---------- Targeted fixes: remove stray boxes, keep focus accessibility ---------- */
+
+/* Keyboard-visible focus only (no noisy outlines on mouse click) */
+a:focus { outline: none; box-shadow: none; }
+a:focus-visible {
+  outline: 3px solid rgba(55,255,139,0.12);
+  outline-offset: 4px;
+}
+
+/* Neutralize decorative pseudo-elements or utility outlines only inside the hero button area */
+.hero .outline,
+.hero .glow-outline,
+.hero .underline {
+  box-shadow: none !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+.btn-group::before,
+.btn-group::after,
+.hero .btn-group::before,
+.hero .btn-group::after {
+  content: none !important;
+  display: none !important;
+}
+
+.btn,
+.primary,
+.secondary,
+.btn-resume {
+  box-shadow: none;
+}
+
+.hero [class*="outline"],
+.hero .outline {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.btn-resume i {
+  font-size: 16px;
+  margin-right: 8px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.btn-group a:empty:not([href]),
+.btn-group span:empty {
+  display: none !important;
+  visibility: hidden !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.btn-resume i {
+  font-size: 16px;
+  margin-right: 8px;
+  display: inline-block;
+  vertical-align: middle;
+  color: inherit; /* inherit button color */
 }
