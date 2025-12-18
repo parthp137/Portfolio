@@ -679,6 +679,7 @@ a:focus-visible {
 }
 
 /* Remove only ::before/::after decorations from the button container (keeps photo glow intact) */
+
 .btn-group::before,
 .btn-group::after,
 .hero .btn-group::before,
@@ -702,9 +703,11 @@ a:focus-visible {
   box-shadow: none !important;
 }
 
+
 /* ---------- keep any other card/frame styling you rely on unchanged ---------- */
 
 /* End of stylesheet */
+
 .btn-resume i {
   font-size: 16px;
   margin-right: 8px;
@@ -712,9 +715,11 @@ a:focus-visible {
   vertical-align: middle;
 }
 
+
 /* ---------- Fix: do NOT hide <i> icons (they're empty elements by nature) ---------- */
 
 /* Hide empty anchors *without* href and empty spans — but keep <i> elements visible */
+
 .btn-group a:empty:not([href]),
 .btn-group span:empty {
   display: none !important;
@@ -726,6 +731,7 @@ a:focus-visible {
 }
 
 /* Ensure icon inside resume button is visible and spaced */
+
 .btn-resume i {
   font-size: 16px;
   margin-right: 8px;
