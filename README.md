@@ -3,7 +3,7 @@
 This project is a front-end portfolio website designed to showcase my skills, projects, certifications, and background as a web developer. It features a modern dark-themed interface with smooth scrolling, animated sections, and a responsive layout. The site is built using HTML, CSS, and JavaScript.
 
 ## Live Demo
-https://parthp137.github.io/PRODIGY_WD_04/
+https://parthp137.github.io/Portfolio/
 
 ## Features
 
@@ -72,8 +72,8 @@ All transitions and interactions are implemented using JavaScript.
 
 ### 1. Clone the repository:
 
-git clone https://github.com/parthp137/PRODIGY_WD_04.git
-cd PRODIGY_WD_04
+git clone https://github.com/parthp137/Portfolio.git
+cd Portfolio
 
 ### 2. Open the project in a browser:
 - Open `index.html` directly, or
