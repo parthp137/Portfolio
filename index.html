@@ -25,10 +25,14 @@
           <li><a href="#about">About</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#skills">Skills</a></li>
+          <li><a href="#achievements">Achievements</a></li>
           <li><a href="#certifications">Certifications</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+        <i class="fas fa-moon"></i>
+      </button>
     </div>
   </header>
 
@@ -83,7 +87,7 @@
           <article class="card fade-right">
             <p class="card-label">Education</p>
             <p class="card-title">B.E in Information Technology</p>
-            <p class="card-meta">SPPU</p>
+            <p class="card-meta">SPPU  (8.62 CGPA)</p>
             <p class="card-meta">2023 – 2027</p>
             <p class="card-body">
               Focused on software engineering and web technologies with a strong emphasis on
@@ -95,10 +99,21 @@
             <p class="card-label">Experience</p>
             <p class="card-title">Web Development Intern</p>
             <p class="card-meta">Prodigy Infotech</p>
-            <p class="card-meta">2025 – Present</p>
+            <p class="card-meta">Dec 2025 – Jan 2026</p>
             <p class="card-body">
               Building responsive web applications, collaborating with design teams, and
               maintaining existing codebases while implementing new features.
+            </p>
+          </article>
+
+          <article class="card fade-up">
+            <p class="card-label">Experience</p>
+            <p class="card-title">Full Stack Development Intern</p>
+            <p class="card-meta">JD Solutions • Pune, India</p>
+            <p class="card-meta">Jan 2026 – Jan 2026</p>
+            <p class="card-body">
+              Developed and integrated frontend-backend modules for web applications.
+              Optimized features and improved performance using modern full-stack practices.
             </p>
           </article>
         </div>
@@ -111,7 +126,7 @@
         <p class="mini-title">PORTFOLIO</p>
         <h2>Projects</h2>
         <p class="section-description">
-          A collection of projects that showcase my skills and passion for web development.
+          A collection of projects that showcase my skills and passion .
         </p>
 
         <div class="project-grid">
@@ -120,17 +135,19 @@
             <div class="project-image-wrapper">
             </div>
             <div class="project-content">
-              <h3>Axion</h3>
-              <p class="project-text">
-                Axion is a front-end web project designed to demonstrate a fully interactive navigation system with smooth scrolling, active section highlighting, mobile responsiveness, and a modern dark-themed interface.
-              </p>
+              <h3>CareSync</h3>
+              <p class="project-meta">Patient-Centric Healthcare Platform • 2026</p>
+              <ul class="project-text">
+                <li>Built a FastAPI backend for symptom classification, urgency triage, and specialty-based care recommendations.</li>
+                <li>Integrated LLM inference with rule-based emergency overrides and deterministic fallback handling.</li>
+                <li>Implemented severity-driven recommendation engine with weighted ranking and structured JSON enrichment.</li>
+                <li>Designed modular architecture with conversation persistence and geolocation fallback logic.</li>
+              </ul>
               <div class="project-tags">
-                <span class="tag">HTML</span>
-                <span class="tag">CSS</span>
-                <span class="tag">JS</span>
-              </div>
-              <div class="project-links">
-                <a href="https://parthp137.github.io/PRODIGY_WD_01/" class="project-link">Live Demo</a>
+                <span class="tag">FastAPI</span>
+                <span class="tag">SQLAlchemy</span>
+                <span class="tag">LLM APIs</span>
+                <span class="tag">Pandas</span>
               </div>
             </div>
           </article>
@@ -140,37 +157,19 @@
             <div class="project-image-wrapper">
             </div>
             <div class="project-content">
-              <h3>Vortex</h3>
-              <p class="project-text">
-                Vortex is a front-end stopwatch project. It provides precise time tracking with lap recording, keyboard shortcuts, responsive UI design, and a polished animated interface.
-              </p>
+              <h3>LiveProof</h3>
+              <p class="project-meta">ML-Based Human Presence Verification • 2026</p>
+              <ul class="project-text">
+                <li>Developed real-time behavioral verification system distinguishing human vs synthetic interactions using 7 extracted features.</li>
+                <li>Trained Logistic Regression model with explainable outputs including feature importance and confidence scoring.</li>
+                <li>Engineered frontend behavioral signal capture using browser APIs.</li>
+                <li>Implemented privacy-first, session-scoped architecture with rule-based fallback.</li>
+              </ul>
               <div class="project-tags">
-                <span class="tag">HTML</span>
-                <span class="tag">CSS</span>
-                <span class="tag">JS</span>
-              </div>
-              <div class="project-links">
-                <a href="https://parthp137.github.io/PRODIGY_WD_02/" class="project-link">Live Demo</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Project 3 -->
-          <article class="project-card fade-up">
-            <div class="project-image-wrapper">
-            </div>
-            <div class="project-content">
-              <h3>TriStrike</h3>
-              <p class="project-text">
-                TriStrike is a front-end web-based Tic Tac Toe game featuring an intelligent computer opponent, responsive design, smooth UI interactions, and a modern white-orange themed interface
-              </p>
-              <div class="project-tags">
-                <span class="tag">HTML</span>
-                <span class="tag">CSS</span>
-                <span class="tag">JS</span>
-              </div>
-              <div class="project-links">
-                <a href="https://parthp137.github.io/PRODIGY_WD_03/" class="project-link">Live Demo</a>
+                <span class="tag">Python</span>
+                <span class="tag">Flask</span>
+                <span class="tag">scikit-learn</span>
+                <span class="tag">JavaScript</span>
               </div>
             </div>
           </article>
@@ -184,47 +183,133 @@
         <p class="mini-title">EXPERTISE</p>
         <h2>Technical Skills</h2>
 
-        <div class="skill-grid">
-          <div class="skill-box fade-up">
-            <div class="skill-icon">&#128187;</div>
-            <p>HTML</p>
+        <div class="skill-category-grid">
+          <div class="skill-category fade-up">
+            <h3 class="skill-category-title">Languages</h3>
+            <div class="skill-items">
+              <span>Java</span>
+              <span>C</span>
+              <span>C++</span>
+              <span>Python</span>
+              <span>SQL</span>
+            </div>
           </div>
-          <div class="skill-box fade-up">
-            <div class="skill-icon">&#128187;</div>
-            <p>CSS</p>
+
+          <div class="skill-category fade-up">
+            <h3 class="skill-category-title">Frontend</h3>
+            <div class="skill-items">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+              <span>React</span>
+            </div>
           </div>
-          <div class="skill-box fade-up">
-            <div class="skill-icon">&#128187;</div>
-            <p>JavaScript</p>
+
+          <div class="skill-category fade-up">
+            <h3 class="skill-category-title">Backend</h3>
+            <div class="skill-items">
+              <span>FastAPI</span>
+              <span>Flask</span>
+              <span>Node.js</span>
+              <span>Express.js</span>
+              <span>REST APIs</span>
+            </div>
           </div>
-          <div class="skill-box fade-up">
-            <div class="skill-icon">&#60;/&#62;</div>
-            <p>C</p>
+
+          <div class="skill-category fade-up">
+            <h3 class="skill-category-title">Machine Learning</h3>
+            <div class="skill-items">
+              <span>Scikit-learn</span>
+              <span>Logistic Regression</span>
+              <span>Feature Engineering</span>
+            </div>
           </div>
-          <div class="skill-box fade-up">
-            <div class="skill-icon">&#60;/&#62;</div>
-            <p>C++</p>
+
+          <div class="skill-category fade-up">
+            <h3 class="skill-category-title">Databases</h3>
+            <div class="skill-items">
+              <span>MySQL</span>
+              <span>MongoDB</span>
+              <span>SQLite</span>
+            </div>
           </div>
-          <div class="skill-box fade-up">
-            <div class="skill-icon">&#60;/&#62;</div>
-            <p>Python</p>
+
+          <div class="skill-category fade-up">
+            <h3 class="skill-category-title">Tools</h3>
+            <div class="skill-items">
+              <span>Git</span>
+              <span>GitHub</span>
+              <span>Docker</span>
+            </div>
           </div>
-          <div class="skill-box fade-up">
-            <div class="skill-icon">&#128202;</div>
-            <p>SQL</p>
+
+          <div class="skill-category fade-up">
+            <h3 class="skill-category-title">Concepts</h3>
+            <div class="skill-items">
+              <span>API Design</span>
+              <span>Fallback Systems</span>
+              <span>Geolocation Resolution</span>
+              <span>Recommendation Systems</span>
+            </div>
           </div>
-          <div class="skill-box fade-up">
-            <div class="skill-icon">&#128202;</div>
-            <p>MongoDB</p>
-          </div>
-          <div class="skill-box fade-up">
-            <div class="skill-icon">&#128187;</div>
-            <p>Bootstrap</p>
-          </div>
-          <div class="skill-box fade-up">
-            <div class="skill-icon">&#128187;</div>
-            <p>UI/UX</p>
-          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACHIEVEMENTS -->
+    <section id="achievements" class="section achievements">
+      <div class="container fade-up">
+        <p class="mini-title">RECOGNITION</p>
+        <h2>Achievements & Competitions</h2>
+
+        <div class="achievement-grid">
+          <article class="achievement-card fade-up">
+            <div class="achievement-icon winner">
+              <i class="fas fa-trophy"></i>
+            </div>
+            <div class="achievement-content">
+              <h3>Winner — Techathon 3.0</h3>
+              <p class="achievement-year">2026</p>
+              <p class="achievement-org">AISSMS • Best Healthcare Solution</p>
+              <p class="achievement-desc">Built hybrid AI + rule-based patient decision platform within 24 hours.</p>
+            </div>
+          </article>
+
+          <article class="achievement-card fade-up">
+            <div class="achievement-icon finalist">
+              <i class="fas fa-medal"></i>
+            </div>
+            <div class="achievement-content">
+              <h3>Finalist — TrustAI Ideathon</h3>
+              <p class="achievement-year">2026</p>
+              <p class="achievement-org">AI Impact Summit, IIIT Pune</p>
+              <p class="achievement-desc">Top 20 among 600+ national registrations.</p>
+            </div>
+          </article>
+
+          <article class="achievement-card fade-up">
+            <div class="achievement-icon finalist">
+              <i class="fas fa-medal"></i>
+            </div>
+            <div class="achievement-content">
+              <h3>Finalist — Udyamotsav</h3>
+              <p class="achievement-year">2025</p>
+              <p class="achievement-org">AICTE & MoE Innovation Cell, MIT-WPU</p>
+              <p class="achievement-desc">Selected among 10,000+ registrations.</p>
+            </div>
+          </article>
+
+          <article class="achievement-card fade-up">
+            <div class="achievement-icon finalist">
+              <i class="fas fa-medal"></i>
+            </div>
+            <div class="achievement-content">
+              <h3>Finalist — INNOVIO</h3>
+              <p class="achievement-year">2026</p>
+              <p class="achievement-org">SKNCOE</p>
+              <p class="achievement-desc">Two-phase innovation and technology competition.</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -325,8 +410,8 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>@ All rights reserved.</span>
-      <span>Designed &amp; built with passion.</span>
+      <span>© 2026 All rights reserved</span>
+      <span>Designed &amp; built with passion</span>
     </div>
   </div>
 </footer>
