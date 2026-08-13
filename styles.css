@@ -424,6 +424,7 @@ body {
   display: flex;
   flex-direction: column;
   flex: 1;
+}
 
 .project-meta {
   font-size: 13px;
