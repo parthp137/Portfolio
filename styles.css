@@ -33,9 +33,9 @@ body.light-theme {
   --text-primary: #212529;
   --text-secondary: #495057;
   --text-muted: #6c757d;
-  --accent: #37ff8b;
+  --accent: #009e4d;
   --border-color: rgba(0, 0, 0, 0.08);
-  --border-hover: rgba(55, 255, 139, 0.5);
+  --border-hover: rgba(0, 158, 77, 0.4);
   --shadow: rgba(0, 0, 0, 0.1);
   --navbar-bg: rgba(255, 255, 255, 0.9);
 }
@@ -431,7 +431,6 @@ body {
   color: var(--text-muted);
   margin-top: 4px;
   font-weight: 400;
-}
 }
 
 .project-text {
@@ -1024,23 +1023,7 @@ a:focus-visible {
   box-shadow: none !important;
 }
 
-
-/* ---------- keep any other card/frame styling you rely on unchanged ---------- */
-
-/* End of stylesheet */
-
-.btn-resume i {
-  font-size: 16px;
-  margin-right: 8px;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-
-/* ---------- Fix: do NOT hide <i> icons (they're empty elements by nature) ---------- */
-
 /* Hide empty anchors *without* href and empty spans — but keep <i> elements visible */
-
 .btn-group a:empty:not([href]),
 .btn-group span:empty {
   display: none !important;
@@ -1052,11 +1035,10 @@ a:focus-visible {
 }
 
 /* Ensure icon inside resume button is visible and spaced */
-
 .btn-resume i {
   font-size: 16px;
   margin-right: 8px;
   display: inline-block;
   vertical-align: middle;
-  color: inherit; /* inherit button color */
+  color: inherit;
 }
