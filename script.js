@@ -78,6 +78,7 @@ setActiveNav();
 document.querySelectorAll('a[href^="#"]').forEach(link => {
   link.addEventListener('click', e => {
     const targetId = link.getAttribute('href');
+    if (!targetId || targetId === '#') return;
     const targetEl = document.querySelector(targetId);
     if (!targetEl) return;
 
@@ -95,6 +96,7 @@ const form = document.querySelector('.contact-form');
 if (form) {
   form.addEventListener('submit', e => {
     e.preventDefault();
-    alert('Message sent! (This is a front-end demo only.)');
+    alert('Message sent! Thank you for reaching out.');
+    form.reset();
   });
 }
