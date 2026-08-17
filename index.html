@@ -3,13 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio</title>
+  <title>Parth Patwardhan | Full Stack Web Developer</title>
+  <meta name="description" content="Portfolio of Parth Patwardhan - Full Stack Web Developer specializing in scalable web applications, modern JavaScript frameworks, and ML solutions." />
+  <meta name="author" content="Parth Patwardhan" />
+
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:title" content="Parth Patwardhan | Full Stack Web Developer" />
+  <meta property="og:description" content="Crafting elegant solutions through clean code and thoughtful design. Specialized in building scalable web applications." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://parthp137.github.io/Portfolio/" />
+  <meta property="og:image" content="images/Profile.jpg" />
 
   <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -126,14 +135,12 @@
         <p class="mini-title">PORTFOLIO</p>
         <h2>Projects</h2>
         <p class="section-description">
-          A collection of projects that showcase my skills and passion .
+          A collection of projects that showcase my skills and passion.
         </p>
 
         <div class="project-grid">
           <!-- Project 1 -->
           <article class="project-card fade-up">
-            <div class="project-image-wrapper">
-            </div>
             <div class="project-content">
               <h3>CareSync</h3>
               <p class="project-meta">Patient-Centric Healthcare Platform • 2026</p>
@@ -154,8 +161,6 @@
 
           <!-- Project 2 -->
           <article class="project-card fade-up">
-            <div class="project-image-wrapper">
-            </div>
             <div class="project-content">
               <h3>LiveProof</h3>
               <p class="project-meta">ML-Based Human Presence Verification • 2026</p>
@@ -316,7 +321,7 @@
             <p class="cert-org">EduPyramids, SINE – IIT Bombay</p>
             <p class="cert-year">Issued Oct 2025</p>
             <p class="cert-skill">Skills: Bootstrap (Framework)</p>
-            <a href="/certificates/bootstrap.pdf" target="_blank" class="cert-btn">View Certificate</a>
+            <a href="certificates/Bootstrap.pdf" target="_blank" class="cert-btn">View Certificate</a>
           </article>
 
           <article class="cert-card fade-up">
@@ -334,7 +339,7 @@
             <p class="cert-org">IIT Bombay – Spoken Tutorial Project</p>
             <p class="cert-year">Issued Apr 2025</p>
             <p class="cert-skill">Skills: C++</p>
-            <a href="/certificates/C++.pdf" target="_blank" class="cert-btn">View Certificate</a>
+            <a href="certificates/C++.pdf" target="_blank" class="cert-btn">View Certificate</a>
           </article>
 
           <article class="cert-card fade-up">
@@ -343,7 +348,7 @@
             <p class="cert-org">IIT Bombay – Spoken Tutorial Project</p>
             <p class="cert-year">Issued Nov 2024</p>
             <p class="cert-skill">Skills: C Programming</p>
-            <a href="/certificates/C.pdf" target="_blank" class="cert-btn">View Certificate</a>
+            <a href="certificates/C.pdf" target="_blank" class="cert-btn">View Certificate</a>
           </article>
 
         </div>
@@ -364,15 +369,15 @@
           <form class="contact-form">
             <div class="form-group">
               <label for="name">Name</label>
-              <input id="name" type="text" placeholder="Your name" />
+              <input id="name" name="name" type="text" placeholder="Your name" required />
             </div>
             <div class="form-group">
               <label for="email">Email</label>
-              <input id="email" type="email" placeholder="your.email@example.com" />
+              <input id="email" name="email" type="email" placeholder="your.email@example.com" required />
             </div>
             <div class="form-group">
               <label for="message">Message</label>
-              <textarea id="message" rows="6" placeholder="Tell me about your project..."></textarea>
+              <textarea id="message" name="message" rows="6" placeholder="Tell me about your project..." required></textarea>
             </div>
             <button type="submit" class="btn primary contact-btn">Send Message</button>
           </form>
