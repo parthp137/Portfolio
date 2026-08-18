@@ -90,13 +90,28 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 });
 
 // ============================================
-// CONTACT FORM
+// TOAST NOTIFICATION & CONTACT FORM
 // ============================================
+function showToast(message) {
+  let toast = document.getElementById('toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'toast';
+    toast.className = 'toast';
+    document.body.appendChild(toast);
+  }
+  toast.innerHTML = `<i class="fas fa-check-circle"></i> <span>${message}</span>`;
+  toast.classList.add('show-toast');
+  setTimeout(() => {
+    toast.classList.remove('show-toast');
+  }, 3500);
+}
+
 const form = document.querySelector('.contact-form');
 if (form) {
   form.addEventListener('submit', e => {
     e.preventDefault();
-    alert('Message sent! Thank you for reaching out.');
+    showToast('Message sent! Thank you for reaching out.');
     form.reset();
   });
 }
