@@ -31,21 +31,38 @@ themeToggle.addEventListener('click', () => {
 });
 
 // ============================================
-// SCROLL REVEAL
+// SCROLL REVEAL (IntersectionObserver)
 // ============================================
 const animated = document.querySelectorAll('.fade-up, .fade-left, .fade-right');
 
-function reveal() {
-  animated.forEach(el => {
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight - 100) {
-      el.classList.add('show');
-    }
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    root: null,
+    rootMargin: '0px 0px -80px 0px',
+    threshold: 0.1
   });
-}
 
-window.addEventListener('scroll', reveal);
-reveal();
+  animated.forEach(el => observer.observe(el));
+} else {
+  // Fallback for older browsers
+  const reveal = () => {
+    animated.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 80) {
+        el.classList.add('show');
+      }
+    });
+  };
+  window.addEventListener('scroll', reveal);
+  reveal();
+}
 
 // Active nav link
 const sections = document.querySelectorAll('section');
