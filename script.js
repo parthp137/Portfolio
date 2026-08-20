@@ -150,3 +150,11 @@ if (backToTopBtn) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
+
+// ============================================
+// DYNAMIC FOOTER YEAR
+// ============================================
+const yearEl = document.getElementById('current-year');
+if (yearEl) {
+  yearEl.textContent = new Date().getFullYear();
+}
