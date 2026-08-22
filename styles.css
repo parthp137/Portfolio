@@ -670,12 +670,6 @@ body {
   border: 1px solid var(--accent-border);
 }
 
-.github-meta {
-  font-size: 12.5px;
-  color: var(--text-muted);
-  margin-top: 4px;
-}
-
 .github-stats {
   display: flex;
   gap: 16px;

@@ -167,7 +167,6 @@ async function initGitHubActivity() {
   const monthLabelsContainer = document.getElementById('graph-month-labels');
   const totalEl = document.getElementById('gh-total-contribs');
   const streakEl = document.getElementById('gh-current-streak');
-  const lastUpdatedEl = document.getElementById('gh-last-updated');
 
   if (!gridContainer) return;
 
@@ -176,43 +175,47 @@ async function initGitHubActivity() {
 
   let activityData = null;
 
+  // 1. Try fetching real-time live data first
   try {
-    const res = await fetch('activity.json');
-    if (res.ok) {
-      activityData = await res.json();
+    const liveRes = await fetch(`https://github-contributions-api.jogruber.de/v4/${USERNAME}?y=last`);
+    if (liveRes.ok) {
+      const live = await liveRes.json();
+      const days = live.contributions || [];
+      const total = days.reduce((acc, d) => acc + (d.count || 0), 0);
+
+      const sorted = [...days].filter(d => d && d.date).sort((a, b) => a.date.localeCompare(b.date));
+      let idx = sorted.length - 1;
+      if (idx >= 0 && sorted[idx].count === 0) idx--;
+      let streak = 0;
+      for (let i = idx; i >= 0; i--) {
+        if (sorted[i].count > 0) streak++;
+        else break;
+      }
+
+      activityData = {
+        updatedAt: new Date().toISOString(),
+        isLive: true,
+        github: {
+          username: USERNAME,
+          totalContributions: total,
+          streak: streak,
+          calendar: days
+        }
+      };
     }
   } catch (err) {
-    console.warn('Could not load activity.json, fetching live fallback...', err);
+    console.warn('Live GitHub API fetch failed, trying local activity.json...', err);
   }
 
-  // Fallback to live API if activity.json is not yet available
+  // 2. Fallback to cached activity.json if live API is unavailable
   if (!activityData || !activityData.github) {
     try {
-      const fallbackRes = await fetch(`https://github-contributions-api.jogruber.de/v4/${USERNAME}`);
-      if (fallbackRes.ok) {
-        const live = await fallbackRes.json();
-        const days = live.contributions || [];
-        const total = Object.values(live.total || {}).reduce((a, b) => a + b, 0);
-
-        let streak = 0;
-        const sorted = [...days].sort((a, b) => a.date.localeCompare(b.date));
-        for (let i = sorted.length - 1; i >= 0; i--) {
-          if (sorted[i].count > 0) streak++;
-          else if (streak > 0) break;
-        }
-
-        activityData = {
-          updatedAt: new Date().toISOString(),
-          github: {
-            username: USERNAME,
-            totalContributions: total,
-            streak: streak,
-            calendar: days
-          }
-        };
+      const res = await fetch('activity.json');
+      if (res.ok) {
+        activityData = await res.json();
       }
     } catch (err) {
-      console.error('Failed to load GitHub activity data:', err);
+      console.warn('Could not load activity.json:', err);
     }
   }
 
@@ -221,14 +224,10 @@ async function initGitHubActivity() {
     return;
   }
 
-  const { github, updatedAt } = activityData;
+  const { github } = activityData;
 
   if (totalEl) totalEl.textContent = github.totalContributions.toLocaleString();
   if (streakEl) streakEl.textContent = `${github.streak} ${github.streak === 1 ? 'day' : 'days'}`;
-  if (lastUpdatedEl && updatedAt) {
-    const dateStr = new Date(updatedAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
-    lastUpdatedEl.textContent = `Auto-updated on ${dateStr} via GitHub Actions`;
-  }
 
   // Sort and slice last ~371 days (52-53 weeks)
   const sortedDays = (github.calendar || [])
