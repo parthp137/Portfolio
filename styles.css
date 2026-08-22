@@ -1660,8 +1660,8 @@ button:focus-visible {
 }
 
 /* ==========================================================================
-   ELASTIC JELLY & MAGNETIC CURSOR
-   ========================================================================== */
+   ELASTIC JELLY & MAGNETIC CURSOR (DISABLED - UNCOMMENT TO RE-ENABLE)
+   ==========================================================================
 .jelly-cursor {
   position: fixed;
   left: 0;
@@ -1719,3 +1719,4 @@ body.light-theme .jelly-cursor {
     display: none !important;
   }
 }
+*/
