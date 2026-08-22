@@ -165,8 +165,7 @@ if (yearEl) {
 async function initGitHubActivity() {
   const gridContainer = document.getElementById('github-graph-grid');
   const monthLabelsContainer = document.getElementById('graph-month-labels');
-  const totalEl = document.getElementById('gh-total-contribs');
-  const streakEl = document.getElementById('gh-current-streak');
+  const subtitleEl = document.getElementById('gh-contributions-subtitle');
 
   if (!gridContainer) return;
 
@@ -194,7 +193,6 @@ async function initGitHubActivity() {
 
       activityData = {
         updatedAt: new Date().toISOString(),
-        isLive: true,
         github: {
           username: USERNAME,
           totalContributions: total,
@@ -221,13 +219,16 @@ async function initGitHubActivity() {
 
   if (!activityData || !activityData.github) {
     gridContainer.innerHTML = '<div class="graph-loading">Unable to load contribution data.</div>';
+    if (subtitleEl) subtitleEl.textContent = 'Activity data currently unavailable';
     return;
   }
 
   const { github } = activityData;
 
-  if (totalEl) totalEl.textContent = github.totalContributions.toLocaleString();
-  if (streakEl) streakEl.textContent = `${github.streak} ${github.streak === 1 ? 'day' : 'days'}`;
+  if (subtitleEl) {
+    const contribWord = github.totalContributions === 1 ? 'contribution' : 'contributions';
+    subtitleEl.textContent = `${github.totalContributions.toLocaleString()} ${contribWord} · ${github.streak}-day streak`;
+  }
 
   // Sort and slice last ~371 days (52-53 weeks)
   const sortedDays = (github.calendar || [])
@@ -251,24 +252,25 @@ async function initGitHubActivity() {
     weeks.push(paddedDays.slice(i, i + 7));
   }
 
-  // Generate Month Labels
+  // Generate Month Labels matching Sumedh's exact algorithm
+  const monthNames = weeks.map((week, wIdx) => {
+    const valid = week.find(Boolean);
+    if (!valid) return '';
+    const monthNum = parseInt(valid.date.slice(5, 7), 10) - 1;
+    if (wIdx === 0) return MONTHS[monthNum];
+    const prevValid = weeks[wIdx - 1]?.find(Boolean);
+    if (prevValid && parseInt(prevValid.date.slice(5, 7), 10) - 1 === monthNum) {
+      return '';
+    }
+    return MONTHS[monthNum];
+  });
+
   if (monthLabelsContainer) {
     monthLabelsContainer.innerHTML = '';
-    let lastMonth = -1;
-
-    weeks.forEach((week, wIdx) => {
-      const firstValid = week.find(Boolean);
+    monthNames.forEach((monthText) => {
       const span = document.createElement('span');
-      span.className = 'graph-month-label';
-      span.style.width = '15px'; // 12px cell + 3px gap
-
-      if (firstValid) {
-        const monthNum = parseInt(firstValid.date.slice(5, 7), 10) - 1;
-        if (monthNum !== lastMonth) {
-          span.textContent = MONTHS[monthNum];
-          lastMonth = monthNum;
-        }
-      }
+      span.className = 'month-label';
+      span.textContent = monthText;
       monthLabelsContainer.appendChild(span);
     });
   }
@@ -282,33 +284,22 @@ async function initGitHubActivity() {
     document.body.appendChild(tooltip);
   }
 
-  // Generate Grid with Day Labels
+  // Generate Grid Columns
   gridContainer.innerHTML = '';
-
-  const gridWrapper = document.createElement('div');
-  gridWrapper.className = 'graph-grid-wrapper';
-
-  const dayLabels = document.createElement('div');
-  dayLabels.className = 'graph-day-labels';
-  dayLabels.innerHTML = '<span></span><span>Mon</span><span></span><span>Wed</span><span></span><span>Fri</span><span></span>';
-  gridWrapper.appendChild(dayLabels);
-
-  const columnsContainer = document.createElement('div');
-  columnsContainer.className = 'graph-grid';
 
   weeks.forEach((week) => {
     const col = document.createElement('div');
-    col.className = 'graph-week-col';
+    col.className = 'week-col';
 
     for (let dIdx = 0; dIdx < 7; dIdx++) {
       const day = week[dIdx];
-      const cell = document.createElement('div');
+      const cell = document.createElement('span');
 
       if (!day) {
-        cell.className = 'graph-cell empty';
+        cell.className = 'day-cell empty';
       } else {
         const level = Math.min(4, Math.max(0, day.level ?? 0));
-        cell.className = `graph-cell level-${level}`;
+        cell.className = `day-cell level-${level}`;
         cell.dataset.date = day.date;
         cell.dataset.count = day.count;
 
@@ -321,7 +312,9 @@ async function initGitHubActivity() {
         });
         const countText = day.count === 0 ? 'No contributions' : `${day.count} ${day.count === 1 ? 'contribution' : 'contributions'}`;
 
-        cell.addEventListener('mouseenter', (e) => {
+        cell.setAttribute('title', `${day.date}: ${day.count} ${day.count === 1 ? 'contribution' : 'contributions'}`);
+
+        cell.addEventListener('mouseenter', () => {
           tooltip.innerHTML = `<strong>${countText}</strong> on ${formattedDate}`;
           const rect = cell.getBoundingClientRect();
           tooltip.style.left = `${rect.left + rect.width / 2}px`;
@@ -337,11 +330,8 @@ async function initGitHubActivity() {
       col.appendChild(cell);
     }
 
-    columnsContainer.appendChild(col);
+    gridContainer.appendChild(col);
   });
-
-  gridWrapper.appendChild(columnsContainer);
-  gridContainer.appendChild(gridWrapper);
 }
 
 if (document.readyState === 'loading') {
