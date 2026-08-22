@@ -17,7 +17,7 @@ if (currentTheme === 'light') {
 // Toggle theme on button click
 themeToggle.addEventListener('click', () => {
   body.classList.toggle('light-theme');
-  
+
   // Update icon
   if (body.classList.contains('light-theme')) {
     themeIcon.classList.remove('fa-moon');
@@ -160,7 +160,200 @@ if (yearEl) {
 }
 
 // ============================================
-// ELASTIC JELLY & MAGNETIC CURSOR
+// GITHUB ACTIVITY HEATMAP
+// ============================================
+async function initGitHubActivity() {
+  const gridContainer = document.getElementById('github-graph-grid');
+  const monthLabelsContainer = document.getElementById('graph-month-labels');
+  const totalEl = document.getElementById('gh-total-contribs');
+  const streakEl = document.getElementById('gh-current-streak');
+  const lastUpdatedEl = document.getElementById('gh-last-updated');
+
+  if (!gridContainer) return;
+
+  const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const USERNAME = 'parthp137';
+
+  let activityData = null;
+
+  try {
+    const res = await fetch('activity.json');
+    if (res.ok) {
+      activityData = await res.json();
+    }
+  } catch (err) {
+    console.warn('Could not load activity.json, fetching live fallback...', err);
+  }
+
+  // Fallback to live API if activity.json is not yet available
+  if (!activityData || !activityData.github) {
+    try {
+      const fallbackRes = await fetch(`https://github-contributions-api.jogruber.de/v4/${USERNAME}`);
+      if (fallbackRes.ok) {
+        const live = await fallbackRes.json();
+        const days = live.contributions || [];
+        const total = Object.values(live.total || {}).reduce((a, b) => a + b, 0);
+
+        let streak = 0;
+        const sorted = [...days].sort((a, b) => a.date.localeCompare(b.date));
+        for (let i = sorted.length - 1; i >= 0; i--) {
+          if (sorted[i].count > 0) streak++;
+          else if (streak > 0) break;
+        }
+
+        activityData = {
+          updatedAt: new Date().toISOString(),
+          github: {
+            username: USERNAME,
+            totalContributions: total,
+            streak: streak,
+            calendar: days
+          }
+        };
+      }
+    } catch (err) {
+      console.error('Failed to load GitHub activity data:', err);
+    }
+  }
+
+  if (!activityData || !activityData.github) {
+    gridContainer.innerHTML = '<div class="graph-loading">Unable to load contribution data.</div>';
+    return;
+  }
+
+  const { github, updatedAt } = activityData;
+
+  if (totalEl) totalEl.textContent = github.totalContributions.toLocaleString();
+  if (streakEl) streakEl.textContent = `${github.streak} ${github.streak === 1 ? 'day' : 'days'}`;
+  if (lastUpdatedEl && updatedAt) {
+    const dateStr = new Date(updatedAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+    lastUpdatedEl.textContent = `Auto-updated on ${dateStr} via GitHub Actions`;
+  }
+
+  // Sort and slice last ~371 days (52-53 weeks)
+  const sortedDays = (github.calendar || [])
+    .filter(d => d && d.date)
+    .sort((a, b) => a.date.localeCompare(b.date))
+    .slice(-371);
+
+  if (!sortedDays.length) {
+    gridContainer.innerHTML = '<div class="graph-loading">No activity recorded yet.</div>';
+    return;
+  }
+
+  // Align start padding with day of the week
+  const startDate = new Date(`${sortedDays[0].date}T12:00:00Z`);
+  const startPad = startDate.getUTCDay();
+  const paddedDays = [...Array(startPad).fill(null), ...sortedDays];
+
+  // Group into weeks
+  const weeks = [];
+  for (let i = 0; i < paddedDays.length; i += 7) {
+    weeks.push(paddedDays.slice(i, i + 7));
+  }
+
+  // Generate Month Labels
+  if (monthLabelsContainer) {
+    monthLabelsContainer.innerHTML = '';
+    let lastMonth = -1;
+
+    weeks.forEach((week, wIdx) => {
+      const firstValid = week.find(Boolean);
+      const span = document.createElement('span');
+      span.className = 'graph-month-label';
+      span.style.width = '15px'; // 12px cell + 3px gap
+
+      if (firstValid) {
+        const monthNum = parseInt(firstValid.date.slice(5, 7), 10) - 1;
+        if (monthNum !== lastMonth) {
+          span.textContent = MONTHS[monthNum];
+          lastMonth = monthNum;
+        }
+      }
+      monthLabelsContainer.appendChild(span);
+    });
+  }
+
+  // Create Tooltip Element
+  let tooltip = document.getElementById('graph-tooltip');
+  if (!tooltip) {
+    tooltip = document.createElement('div');
+    tooltip.id = 'graph-tooltip';
+    tooltip.className = 'graph-tooltip';
+    document.body.appendChild(tooltip);
+  }
+
+  // Generate Grid with Day Labels
+  gridContainer.innerHTML = '';
+
+  const gridWrapper = document.createElement('div');
+  gridWrapper.className = 'graph-grid-wrapper';
+
+  const dayLabels = document.createElement('div');
+  dayLabels.className = 'graph-day-labels';
+  dayLabels.innerHTML = '<span></span><span>Mon</span><span></span><span>Wed</span><span></span><span>Fri</span><span></span>';
+  gridWrapper.appendChild(dayLabels);
+
+  const columnsContainer = document.createElement('div');
+  columnsContainer.className = 'graph-grid';
+
+  weeks.forEach((week) => {
+    const col = document.createElement('div');
+    col.className = 'graph-week-col';
+
+    for (let dIdx = 0; dIdx < 7; dIdx++) {
+      const day = week[dIdx];
+      const cell = document.createElement('div');
+
+      if (!day) {
+        cell.className = 'graph-cell empty';
+      } else {
+        const level = Math.min(4, Math.max(0, day.level ?? 0));
+        cell.className = `graph-cell level-${level}`;
+        cell.dataset.date = day.date;
+        cell.dataset.count = day.count;
+
+        const dateObj = new Date(`${day.date}T12:00:00Z`);
+        const formattedDate = dateObj.toLocaleDateString(undefined, {
+          weekday: 'short',
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric'
+        });
+        const countText = day.count === 0 ? 'No contributions' : `${day.count} ${day.count === 1 ? 'contribution' : 'contributions'}`;
+
+        cell.addEventListener('mouseenter', (e) => {
+          tooltip.innerHTML = `<strong>${countText}</strong> on ${formattedDate}`;
+          const rect = cell.getBoundingClientRect();
+          tooltip.style.left = `${rect.left + rect.width / 2}px`;
+          tooltip.style.top = `${rect.top}px`;
+          tooltip.classList.add('visible');
+        });
+
+        cell.addEventListener('mouseleave', () => {
+          tooltip.classList.remove('visible');
+        });
+      }
+
+      col.appendChild(cell);
+    }
+
+    columnsContainer.appendChild(col);
+  });
+
+  gridWrapper.appendChild(columnsContainer);
+  gridContainer.appendChild(gridWrapper);
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initGitHubActivity);
+} else {
+  initGitHubActivity();
+}
+
+/*
+// ============================================
+// ELASTIC JELLY & MAGNETIC CURSOR (DISABLED - UNCOMMENT TO RE-ENABLE)
 // ============================================
 function initElasticCursor() {
   // Only enable on desktop/mouse devices
@@ -388,4 +581,5 @@ if (document.readyState === 'loading') {
 } else {
   initElasticCursor();
 }
+*/
 
