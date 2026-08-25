@@ -9,15 +9,20 @@ This project is a front-end portfolio website designed to showcase my skills, pr
 
 ### Theme System
 - **Dark/Light Mode Toggle:** Switch between dark and light themes with a single click
+- **System Preference Detection:** Automatically syncs with the user's OS color scheme (`prefers-color-scheme`) on first visit
 - **LocalStorage Persistence:** Theme preference is saved and restored across sessions
 - **Smooth Transitions:** All color changes animate smoothly between themes
 - **Dynamic Icons:** Theme toggle button updates icon (moon/sun) based on active theme
 
 ### Navigation System
-- Fixed navigation bar with theme toggle button
-- Smooth scrolling between sections with offset
-- Active link highlighting based on scroll position
-- Scroll reveal animations for all sections
+- **Scroll Progress Indicator:** Top gradient progress bar dynamically tracking reading depth
+- **Dynamic Elevation:** Glassmorphism elevation and blur on scroll (`.scrolled`)
+- **Pill Navigation:** Modern floating pill link container on desktop with active state highlight
+- **Mobile Navigation Drawer:** Responsive slide-in drawer with animated hamburger morphing icon
+- **Quick Action CTA:** Integrated header CTA button for instant conversion
+- **Smooth Scrolling:** Offset-corrected navigation between sections
+- **Active Link Highlighting:** Scroll spy tracking active sections in real time
+- **Scroll Reveal Animations:** IntersectionObserver-powered reveal transitions for all sections
 
 ### UI Sections
 - **Home:** Dynamic headline, role description, profile image, call-to-action buttons, resume download 
