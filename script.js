@@ -277,6 +277,25 @@ async function initGitHubActivity() {
     if (liveRes.ok) {
       const live = await liveRes.json();
       const days = live.contributions || [];
+
+      // Merge with activity.json if local cache has newer or higher counts for today (handles third-party scraper delay)
+      try {
+        const localRes = await fetch('activity.json');
+        if (localRes.ok) {
+          const localData = await localRes.json();
+          const localDays = localData?.github?.calendar || [];
+          const localMap = new Map(localDays.map(d => [d.date, d]));
+
+          days.forEach(d => {
+            const localEntry = localMap.get(d.date);
+            if (localEntry && (localEntry.count || 0) > (d.count || 0)) {
+              d.count = localEntry.count;
+              d.level = localEntry.level;
+            }
+          });
+        }
+      } catch (_) {}
+
       const total = days.reduce((acc, d) => acc + (d.count || 0), 0);
 
       const sorted = [...days].filter(d => d && d.date).sort((a, b) => a.date.localeCompare(b.date));

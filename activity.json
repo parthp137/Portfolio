@@ -8,9 +8,9 @@
     "publicRepos": 14,
     "followers": 2,
     "following": 2,
-    "totalContributions": 231,
-    "streak": 13,
-    "longestStreak": 13,
+    "totalContributions": 247,
+    "streak": 16,
+    "longestStreak": 16,
     "calendar": [
       {
         "date": "2025-08-17",
@@ -1864,8 +1864,23 @@
       },
       {
         "date": "2026-08-22",
-        "count": 5,
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-08-23",
+        "count": 3,
         "level": 1
+      },
+      {
+        "date": "2026-08-24",
+        "count": 8,
+        "level": 2
+      },
+      {
+        "date": "2026-08-25",
+        "count": 5,
+        "level": 2
       }
     ],
     "repos": [
