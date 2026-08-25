@@ -39,11 +39,17 @@
 
 <body>
 
+  <!-- SCROLL PROGRESS BAR -->
+  <div id="scroll-progress" class="scroll-progress-bar" aria-hidden="true"></div>
+
   <!-- NAVBAR -->
-  <header class="navbar">
+  <header class="navbar" id="navbar">
     <div class="container nav-inner">
-      <div class="logo">Portfolio</div>
-      <nav>
+      <a href="#home" class="logo" aria-label="Parth Patwardhan Portfolio">
+        Portfolio<span class="logo-dot">.</span>
+      </a>
+
+      <nav class="nav-desktop" aria-label="Main Navigation">
         <ul class="nav-links">
           <li><a href="#home" class="active">Home</a></li>
           <li><a href="#about">About</a></li>
@@ -55,10 +61,51 @@
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
-      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-        <i class="fas fa-moon"></i>
-      </button>
+
+      <div class="nav-actions">
+        <a href="#contact" class="nav-cta-btn">Let's Talk</a>
+
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
+          <i class="fas fa-moon"></i>
+        </button>
+
+        <button id="hamburger-btn" class="hamburger-btn" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-nav">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
     </div>
+
+    <!-- MOBILE NAVIGATION DRAWER & BACKDROP -->
+    <div id="mobile-menu-backdrop" class="mobile-menu-backdrop" aria-hidden="true"></div>
+    <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile Navigation" aria-hidden="true">
+      <div class="mobile-nav-header">
+        <div class="mobile-logo">
+          Portfolio<span class="logo-dot">.</span>
+        </div>
+        <button id="mobile-close-btn" class="mobile-close-btn" aria-label="Close mobile menu">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <ul class="mobile-nav-links">
+        <li><a href="#home" class="mobile-link active"><i class="fas fa-home"></i> <span>Home</span></a></li>
+        <li><a href="#about" class="mobile-link"><i class="fas fa-user"></i> <span>About</span></a></li>
+        <li><a href="#projects" class="mobile-link"><i class="fas fa-code-branch"></i> <span>Projects</span></a></li>
+        <li><a href="#skills" class="mobile-link"><i class="fas fa-layer-group"></i> <span>Skills</span></a></li>
+        <li><a href="#activity" class="mobile-link"><i class="fab fa-github"></i> <span>Activity</span></a></li>
+        <li><a href="#achievements" class="mobile-link"><i class="fas fa-trophy"></i> <span>Achievements</span></a></li>
+        <li><a href="#certifications" class="mobile-link"><i class="fas fa-certificate"></i> <span>Certifications</span></a></li>
+        <li><a href="#contact" class="mobile-link"><i class="fas fa-paper-plane"></i> <span>Contact</span></a></li>
+      </ul>
+
+      <div class="mobile-nav-footer">
+        <a href="certificates/Parth_Patwardhan_Resume.pdf" target="_blank" rel="noopener noreferrer" class="mobile-resume-btn">
+          <i class="fa-solid fa-file-arrow-up"></i> Download Resume
+        </a>
+      </div>
+    </nav>
   </header>
 
   <main>

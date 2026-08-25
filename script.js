@@ -1,34 +1,64 @@
 // ============================================
-// THEME TOGGLE
+// THEME TOGGLE (with system preference fallback)
 // ============================================
 const themeToggle = document.getElementById('theme-toggle');
-const themeIcon = themeToggle.querySelector('i');
+const themeIcon = themeToggle ? themeToggle.querySelector('i') : null;
 const body = document.body;
 
-// Check for saved theme preference or default to dark
-const currentTheme = localStorage.getItem('theme') || 'dark';
+const savedTheme = localStorage.getItem('theme');
+const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+const currentTheme = savedTheme || (prefersLight ? 'light' : 'dark');
 
 if (currentTheme === 'light') {
   body.classList.add('light-theme');
-  themeIcon.classList.remove('fa-moon');
-  themeIcon.classList.add('fa-sun');
-}
-
-// Toggle theme on button click
-themeToggle.addEventListener('click', () => {
-  body.classList.toggle('light-theme');
-
-  // Update icon
-  if (body.classList.contains('light-theme')) {
+  if (themeIcon) {
     themeIcon.classList.remove('fa-moon');
     themeIcon.classList.add('fa-sun');
-    localStorage.setItem('theme', 'light');
-  } else {
-    themeIcon.classList.remove('fa-sun');
-    themeIcon.classList.add('fa-moon');
-    localStorage.setItem('theme', 'dark');
   }
-});
+}
+
+if (themeToggle && themeIcon) {
+  themeToggle.addEventListener('click', () => {
+    body.classList.toggle('light-theme');
+
+    if (body.classList.contains('light-theme')) {
+      themeIcon.classList.remove('fa-moon');
+      themeIcon.classList.add('fa-sun');
+      localStorage.setItem('theme', 'light');
+    } else {
+      themeIcon.classList.remove('fa-sun');
+      themeIcon.classList.add('fa-moon');
+      localStorage.setItem('theme', 'dark');
+    }
+  });
+}
+
+// ============================================
+// SCROLL PROGRESS BAR & NAVBAR ELEVATION
+// ============================================
+const scrollProgressBar = document.getElementById('scroll-progress');
+const navbarEl = document.getElementById('navbar');
+
+function handleNavbarScroll() {
+  const scrollTop = window.scrollY || document.documentElement.scrollTop;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+  if (scrollProgressBar) {
+    scrollProgressBar.style.width = `${scrollPercent}%`;
+  }
+
+  if (navbarEl) {
+    if (scrollTop > 20) {
+      navbarEl.classList.add('scrolled');
+    } else {
+      navbarEl.classList.remove('scrolled');
+    }
+  }
+}
+
+window.addEventListener('scroll', handleNavbarScroll, { passive: true });
+handleNavbarScroll();
 
 // ============================================
 // SCROLL REVEAL (IntersectionObserver)
@@ -60,38 +90,103 @@ if ('IntersectionObserver' in window) {
       }
     });
   };
-  window.addEventListener('scroll', reveal);
+  window.addEventListener('scroll', reveal, { passive: true });
   reveal();
 }
 
-// Active nav link
+// ============================================
+// ACTIVE NAV LINK TRACKING
+// ============================================
 const sections = document.querySelectorAll('section');
 const navLinks = document.querySelectorAll('.nav-links a');
+const mobileNavLinks = document.querySelectorAll('.mobile-link');
 
 function setActiveNav() {
   let currentId = '';
   const scrollY = window.scrollY;
 
   sections.forEach(sec => {
-    const offsetTop = sec.offsetTop - 220; // adjust for navbar
+    const offsetTop = sec.offsetTop - 180;
     if (scrollY >= offsetTop) {
       currentId = sec.id;
     }
   });
 
-  navLinks.forEach(link => {
-    link.classList.remove('active');
-    const hrefId = link.getAttribute('href').slice(1);
-    if (hrefId === currentId) {
-      link.classList.add('active');
+  const updateLinks = (links) => {
+    links.forEach(link => {
+      link.classList.remove('active');
+      const hrefId = link.getAttribute('href')?.slice(1);
+      if (hrefId === currentId) {
+        link.classList.add('active');
+      }
+    });
+  };
+
+  updateLinks(navLinks);
+  updateLinks(mobileNavLinks);
+}
+
+window.addEventListener('scroll', setActiveNav, { passive: true });
+setActiveNav();
+
+// ============================================
+// MOBILE NAVIGATION DRAWER
+// ============================================
+const hamburgerBtn = document.getElementById('hamburger-btn');
+const mobileNav = document.getElementById('mobile-nav');
+const mobileBackdrop = document.getElementById('mobile-menu-backdrop');
+const mobileCloseBtn = document.getElementById('mobile-close-btn');
+
+function openMobileMenu() {
+  if (!mobileNav) return;
+  mobileNav.classList.add('is-open');
+  mobileNav.setAttribute('aria-hidden', 'false');
+  if (mobileBackdrop) mobileBackdrop.classList.add('is-open');
+  if (hamburgerBtn) {
+    hamburgerBtn.classList.add('is-active');
+    hamburgerBtn.setAttribute('aria-expanded', 'true');
+  }
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMobileMenu() {
+  if (!mobileNav) return;
+  mobileNav.classList.remove('is-open');
+  mobileNav.setAttribute('aria-hidden', 'true');
+  if (mobileBackdrop) mobileBackdrop.classList.remove('is-open');
+  if (hamburgerBtn) {
+    hamburgerBtn.classList.remove('is-active');
+    hamburgerBtn.setAttribute('aria-expanded', 'false');
+  }
+  document.body.style.overflow = '';
+}
+
+if (hamburgerBtn) {
+  hamburgerBtn.addEventListener('click', () => {
+    const isOpen = mobileNav && mobileNav.classList.contains('is-open');
+    if (isOpen) {
+      closeMobileMenu();
+    } else {
+      openMobileMenu();
     }
   });
 }
 
-window.addEventListener('scroll', setActiveNav);
-setActiveNav();
+if (mobileCloseBtn) {
+  mobileCloseBtn.addEventListener('click', closeMobileMenu);
+}
 
-// Smooth scroll
+if (mobileBackdrop) {
+  mobileBackdrop.addEventListener('click', closeMobileMenu);
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && mobileNav && mobileNav.classList.contains('is-open')) {
+    closeMobileMenu();
+  }
+});
+
+// Smooth scroll (handles desktop links, mobile drawer links & buttons)
 document.querySelectorAll('a[href^="#"]').forEach(link => {
   link.addEventListener('click', e => {
     const targetId = link.getAttribute('href');
@@ -100,7 +195,9 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
     if (!targetEl) return;
 
     e.preventDefault();
-    const offset = 80;
+    closeMobileMenu();
+
+    const offset = 76;
     const top = targetEl.offsetTop - offset;
     window.scrollTo({ top, behavior: 'smooth' });
   });
