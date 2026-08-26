@@ -286,11 +286,19 @@ async function initGitHubActivity() {
           const localDays = localData?.github?.calendar || [];
           const localMap = new Map(localDays.map(d => [d.date, d]));
 
+          const existingDates = new Set(days.map(d => d.date));
           days.forEach(d => {
             const localEntry = localMap.get(d.date);
             if (localEntry && (localEntry.count || 0) > (d.count || 0)) {
               d.count = localEntry.count;
               d.level = localEntry.level;
+            }
+          });
+
+          // Also include any dates in activity.json not yet present in the third-party API response
+          localDays.forEach(ld => {
+            if (ld && ld.date && !existingDates.has(ld.date)) {
+              days.push({ date: ld.date, count: ld.count, level: ld.level });
             }
           });
         }
