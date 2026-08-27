@@ -1822,63 +1822,195 @@ button:focus-visible {
 }
 
 /* ==========================================================================
-   ELASTIC JELLY & MAGNETIC CURSOR (DISABLED - UNCOMMENT TO RE-ENABLE)
-   ==========================================================================
-.jelly-cursor {
+   ORIGINKIT INKBLEED PIXELATED CURSOR
+   ========================================================================== */
+.inkbleed-cursor-host {
   position: fixed;
-  left: 0;
-  top: 0;
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
-  border: 2px solid #ffffff;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
   pointer-events: none;
-  z-index: 99999;
-  backdrop-filter: invert(100%);
-  -webkit-backdrop-filter: invert(100%);
+  z-index: 999999;
+  overflow: hidden;
   opacity: 0;
-  box-sizing: border-box;
-  will-change: transform, width, height, border-radius, opacity;
-  transform: translate(-50%, -50%);
-  transition: opacity 0.25s ease, border-color 0.3s ease;
+  transition: opacity 0.25s ease;
 }
 
-body.light-theme .jelly-cursor {
-  border-color: #000000;
-}
-
-.dot-cursor {
-  position: fixed;
+.inkbleed-pixel {
+  position: absolute;
   left: 0;
   top: 0;
-  width: 12px;
-  height: 12px;
   border-radius: 50%;
   pointer-events: none;
-  z-index: 100000;
-  backdrop-filter: invert(100%);
-  -webkit-backdrop-filter: invert(100%);
-  opacity: 0;
   will-change: transform, opacity;
-  transform: translate(-50%, -50%);
-  transition: opacity 0.2s ease;
+  background-color: var(--accent, #37ff8b);
+  box-shadow: 0 0 10px var(--accent-glow, rgba(55, 255, 139, 0.45));
+}
+
+body.light-theme .inkbleed-pixel {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
 @media (hover: hover) and (pointer: fine) {
-
+  body.has-custom-cursor,
   body.has-custom-cursor a,
   body.has-custom-cursor button,
-  body.has-custom-cursor .cursor-can-hover {
-    cursor: none;
+  body.has-custom-cursor [role="button"],
+  body.has-custom-cursor .cursor-can-hover,
+  body.has-custom-cursor input,
+  body.has-custom-cursor textarea,
+  body.has-custom-cursor select {
+    cursor: none !important;
   }
 }
 
 @media (max-width: 768px),
 (pointer: coarse) {
-
-  .jelly-cursor,
-  .dot-cursor {
+  .inkbleed-cursor-host {
     display: none !important;
   }
 }
-*/
+
+/* ==========================================================================
+   ORIGINKIT SHINY PILL & SHINY TEXT ANIMATION
+   ========================================================================== */
+@keyframes shinyPillSweep {
+  0% {
+    -webkit-mask-position: 200%;
+    mask-position: 200%;
+  }
+  100% {
+    -webkit-mask-position: -100%;
+    mask-position: -100%;
+  }
+}
+
+@keyframes pulsePillDot {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.35);
+    opacity: 0.65;
+  }
+}
+
+/* Shiny Pill Badge Component */
+.shiny-pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--accent-subtle);
+  border: 1px solid var(--accent-border);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  box-shadow: 0 4px 16px var(--accent-glow);
+  text-decoration: none;
+  overflow: hidden;
+  white-space: nowrap;
+  user-select: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  margin-bottom: 12px;
+}
+
+.shiny-pill:hover {
+  border-color: var(--accent);
+  box-shadow: 0 6px 24px var(--accent-glow);
+  transform: translateY(-1px);
+}
+
+.shiny-pill-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+  animation: pulsePillDot 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+/* Shiny Text / Shiny Word Effect */
+.shiny-text {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+}
+
+.shiny-text-base {
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+}
+
+.shiny-text-overlay {
+  position: absolute;
+  inset: 0;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  color: var(--accent, #37ff8b);
+  pointer-events: none;
+  user-select: none;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  -webkit-mask-image: linear-gradient(to right, transparent 25%, #000 50%, transparent 75%);
+  mask-image: linear-gradient(to right, transparent 25%, #000 50%, transparent 75%);
+  -webkit-mask-size: 160% auto;
+  mask-size: 160% auto;
+  animation: shinyPillSweep 3s ease-in-out infinite;
+  text-shadow: 0 0 12px var(--accent-glow, rgba(55, 255, 139, 0.45));
+}
+
+/* Direct inline shiny word class (uses data-shiny attribute) */
+.shiny-word {
+  position: relative;
+  display: inline-block;
+  color: var(--text-primary);
+  font-weight: inherit;
+}
+
+.shiny-word::after {
+  content: attr(data-shiny);
+  position: absolute;
+  inset: 0;
+  color: var(--accent, #37ff8b);
+  pointer-events: none;
+  user-select: none;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  -webkit-mask-image: linear-gradient(to right, transparent 25%, #000 50%, transparent 75%);
+  mask-image: linear-gradient(to right, transparent 25%, #000 50%, transparent 75%);
+  -webkit-mask-size: 160% auto;
+  mask-size: 160% auto;
+  animation: shinyPillSweep 3s ease-in-out infinite;
+  text-shadow: 0 0 10px var(--accent-glow);
+}
+
+body.light-theme .shiny-text-overlay,
+body.light-theme .shiny-word::after {
+  color: var(--accent, #059669);
+  text-shadow: 0 0 8px rgba(5, 150, 105, 0.35);
+}
