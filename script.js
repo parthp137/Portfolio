@@ -1,5 +1,6 @@
 // ============================================
 // THEME TOGGLE (with system preference fallback)
+// Default Theme: Theme 1 (Cyber Emerald)
 // ============================================
 const themeToggle = document.getElementById('theme-toggle');
 const themeIcon = themeToggle ? themeToggle.querySelector('i') : null;
@@ -464,235 +465,215 @@ if (document.readyState === 'loading') {
   initGitHubActivity();
 }
 
-/*
 // ============================================
-// ELASTIC JELLY & MAGNETIC CURSOR (DISABLED - UNCOMMENT TO RE-ENABLE)
+// ORIGINKIT INKBLEED PIXELATED CURSOR
 // ============================================
-function initElasticCursor() {
-  // Only enable on desktop/mouse devices
+function initInkbleedCursor(options = {}) {
+  // Only enable on desktop devices with fine pointer
   if (window.matchMedia('(max-width: 768px)').matches || !window.matchMedia('(pointer: fine)').matches) {
     return;
   }
 
-  const jellyEl = document.getElementById('jelly-cursor');
-  const dotEl = document.getElementById('dot-cursor');
-  if (!jellyEl || !dotEl || typeof gsap === 'undefined') return;
+  if (document.getElementById('inkbleed-cursor-host')) return;
 
-  document.body.classList.add('has-custom-cursor');
-
-  const CURSOR_DIAMETER = 50;
-  const WRAP_PADDING = 8;
-  const WRAP_RADIUS = 12;
-  const WRAP_EASE = 0.2;
-  const TARGET_PULL = 0.35;
-  const TARGET_EASE = 0.25;
-  const TARGET_MAX_PULL = 12;
-  const CURSOR_PARALLAX = 0.12;
-  const CURSOR_MAX_LEAD = 10;
-
-  const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
-  const lerp = (a, b, t) => a + (b - a) * t;
-  const getScale = (dx, dy) => Math.min(Math.sqrt(dx * dx + dy * dy) / 735, 0.35);
-  const getAngle = (dx, dy) => (Math.atan2(dy, dx) * 180) / Math.PI;
-
-  const pos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-  const vel = { x: 0, y: 0 };
-  const pointer = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-  const jelly = {
-    x: pos.x,
-    y: pos.y,
-    w: CURSOR_DIAMETER,
-    h: CURSOR_DIAMETER,
-    r: CURSOR_DIAMETER / 2,
-    sx: 1,
-    sy: 1
+  const DEFAULTS = {
+    pixelCount: 30,
+    pixelSize: 20,
+    pixelShape: 'circle', // 'circle' | 'square'
+    trailStyle: 'solid',  // 'solid' | 'dashed' | 'wave'
+    trailSpacing: 2,
+    followSpeed: 10,
+    stiffness: 10,
+    damping: 10,
+    fadeOut: true,
+    scaleVariation: true,
+    idleFadeDuration: 1.5,
   };
-  const active = { el: null, base: null, offX: 0, offY: 0 };
-  let cursorMoved = false;
-  let isHidden = false;
 
-  gsap.set([jellyEl, dotEl], { xPercent: -50, yPercent: -50 });
-  const setX = gsap.quickSetter(jellyEl, 'x', 'px');
-  const setY = gsap.quickSetter(jellyEl, 'y', 'px');
-  const setR = gsap.quickSetter(jellyEl, 'rotate', 'deg');
-  const setSX = gsap.quickSetter(jellyEl, 'scaleX');
-  const setSY = gsap.quickSetter(jellyEl, 'scaleY');
-  const setW = gsap.quickSetter(jellyEl, 'width', 'px');
-  const setH = gsap.quickSetter(jellyEl, 'height', 'px');
-  const setRadius = gsap.quickSetter(jellyEl, 'borderRadius', 'px');
-  const setOpacity = gsap.quickSetter(jellyEl, 'opacity');
-  const setDotX = gsap.quickSetter(dotEl, 'x', 'px');
-  const setDotY = gsap.quickSetter(dotEl, 'y', 'px');
-  const setDotOpacity = gsap.quickSetter(dotEl, 'opacity');
+  const config = { ...DEFAULTS, ...options };
 
-  function measure(el) {
-    const r = el.getBoundingClientRect();
-    return {
-      left: r.left,
-      top: r.top,
-      width: r.width,
-      height: r.height,
-      cx: r.left + r.width / 2,
-      cy: r.top + r.height / 2
+  const NAMED_EASES = {
+    idle: [0.4, 0, 0.2, 1]
+  };
+
+  function makeEaseFn(pts = NAMED_EASES.idle) {
+    const [x1, y1, x2, y2] = pts;
+    if (x1 === y1 && x2 === y2) return (t) => t;
+    const bez = (a, b, t) => {
+      const u = 1 - t;
+      return 3 * u * u * t * a + 3 * u * t * t * b + t * t * t;
+    };
+    return (t) => {
+      const x = Math.max(0, Math.min(1, t));
+      let s = x;
+      for (let i = 0; i < 8; i++) {
+        const cx = bez(x1, x2, s) - x;
+        const u = 1 - s;
+        const dx = 3 * u * u * x1 + 6 * u * s * (x2 - x1) + 3 * s * s * (1 - x2);
+        if (Math.abs(dx) < 1e-6) break;
+        s -= cx / dx;
+        s = Math.max(0, Math.min(1, s));
+      }
+      return bez(y1, y2, s);
     };
   }
 
-  function render() {
-    setDotX(pointer.x);
-    setDotY(pointer.y);
+  const idleEase = makeEaseFn(NAMED_EASES.idle);
+  const IDLE_FADE_SECONDS = Math.max(0.1, config.idleFadeDuration);
 
-    const el = active.el;
-    if (el && active.base) {
-      // Magnetic pull effect on element
-      const b = active.base;
-      const pullX = clamp((pointer.x - b.cx) * TARGET_PULL, -TARGET_MAX_PULL, TARGET_MAX_PULL);
-      const pullY = clamp((pointer.y - b.cy) * TARGET_PULL, -TARGET_MAX_PULL, TARGET_MAX_PULL);
-      active.offX = lerp(active.offX, pullX, TARGET_EASE);
-      active.offY = lerp(active.offY, pullY, TARGET_EASE);
-      gsap.set(el, { x: active.offX, y: active.offY });
+  // Create host container
+  const host = document.createElement('div');
+  host.id = 'inkbleed-cursor-host';
+  host.className = 'inkbleed-cursor-host';
+  document.body.appendChild(host);
+  document.body.classList.add('has-custom-cursor');
 
-      // Cursor snaps to hug the target
-      const leadX = clamp((pointer.x - b.cx) * CURSOR_PARALLAX, -CURSOR_MAX_LEAD, CURSOR_MAX_LEAD);
-      const leadY = clamp((pointer.y - b.cy) * CURSOR_PARALLAX, -CURSOR_MAX_LEAD, CURSOR_MAX_LEAD);
-      const tx = b.cx + active.offX + leadX;
-      const ty = b.cy + active.offY + leadY;
+  const pool = [];
+  const count = Math.max(1, config.pixelCount);
+  const cursor = { x: -1000, y: -1000 };
 
-      jelly.x = lerp(jelly.x, tx, WRAP_EASE);
-      jelly.y = lerp(jelly.y, ty, WRAP_EASE);
-      jelly.w = lerp(jelly.w, b.width + WRAP_PADDING * 2, WRAP_EASE);
-      jelly.h = lerp(jelly.h, b.height + WRAP_PADDING * 2, WRAP_EASE);
-      jelly.r = lerp(jelly.r, WRAP_RADIUS, WRAP_EASE);
-      jelly.sx = lerp(jelly.sx, 1, 0.3);
-      jelly.sy = lerp(jelly.sy, 1, 0.3);
-
-      setX(jelly.x);
-      setY(jelly.y);
-      setW(jelly.w);
-      setH(jelly.h);
-      setRadius(jelly.r);
-      setSX(jelly.sx);
-      setSY(jelly.sy);
-      setR(0);
-      setOpacity(isHidden ? 0 : 1);
-      setDotOpacity(0); // Hide dot while wrapped
-    } else {
-      // Free-roam jelly physics
-      const rotation = getAngle(vel.x, vel.y);
-      const scale = getScale(vel.x, vel.y);
-
-      jelly.x = pos.x;
-      jelly.y = pos.y;
-      jelly.w = lerp(jelly.w, CURSOR_DIAMETER + scale * 300, 0.4);
-      jelly.h = lerp(jelly.h, CURSOR_DIAMETER, 0.4);
-      jelly.r = lerp(jelly.r, CURSOR_DIAMETER / 2, 0.4);
-      jelly.sx = 1 + scale;
-      jelly.sy = 1 - scale * 2;
-
-      setX(pos.x);
-      setY(pos.y);
-      setW(jelly.w);
-      setH(jelly.h);
-      setRadius(jelly.r);
-      setR(rotation);
-      setSX(jelly.sx);
-      setSY(jelly.sy);
-      setOpacity(isHidden ? 0 : 1);
-      setDotOpacity(isHidden ? 0 : 1);
-    }
+  for (let i = 0; i < count; i++) {
+    const node = document.createElement('div');
+    node.className = 'inkbleed-pixel';
+    node.style.width = `${config.pixelSize}px`;
+    node.style.height = `${config.pixelSize}px`;
+    node.style.borderRadius = config.pixelShape === 'circle' ? '50%' : '0';
+    host.appendChild(node);
+    pool.push({
+      node,
+      x: cursor.x,
+      y: cursor.y,
+      vx: 0,
+      vy: 0,
+      hidden: false
+    });
   }
 
-  window.addEventListener('mousemove', (e) => {
-    pointer.x = e.clientX;
-    pointer.y = e.clientY;
+  let seen = false;
+  let inside = false;
+  let lastMove = 0;
 
-    if (!cursorMoved) {
-      cursorMoved = true;
-      pos.x = e.clientX;
-      pos.y = e.clientY;
-      gsap.ticker.add(render);
+  const onMove = (e) => {
+    const x = e.clientX;
+    const y = e.clientY;
+    if (Math.hypot(x - cursor.x, y - cursor.y) > 0.5) {
+      lastMove = performance.now();
     }
+    cursor.x = x;
+    cursor.y = y;
+    host.style.opacity = '1';
 
-    gsap.to(pos, {
-      x: e.clientX,
-      y: e.clientY,
-      duration: 1.5,
-      ease: 'elastic.out(1, 0.5)',
-      onUpdate: () => {
-        vel.x = (e.clientX - pos.x) * 1.2;
-        vel.y = (e.clientY - pos.y) * 1.2;
+    if (!seen || !inside) {
+      seen = true;
+      for (const px of pool) {
+        px.x = cursor.x;
+        px.y = cursor.y;
+        px.vx = 0;
+        px.vy = 0;
       }
-    });
-
-    const hide = !!e.target?.closest?.('[data-no-custom-cursor="true"]');
-    isHidden = hide;
-  });
-
-  const acquire = (el) => {
-    gsap.killTweensOf(el);
-    active.el = el;
-    active.base = measure(el);
-    active.offX = 0;
-    active.offY = 0;
-    jelly.x = pos.x;
-    jelly.y = pos.y;
-    el.style.willChange = 'transform';
-  };
-
-  const release = () => {
-    const el = active.el;
-    if (el) {
-      gsap.to(el, {
-        x: 0,
-        y: 0,
-        duration: 0.7,
-        ease: 'elastic.out(1, 0.35)',
-        clearProps: 'transform',
-        onComplete: () => {
-          el.style.willChange = '';
-        }
-      });
     }
-    active.el = null;
-    active.base = null;
-    active.offX = 0;
-    active.offY = 0;
+    inside = true;
   };
 
-  document.addEventListener('pointerover', (e) => {
-    const target = e.target;
-    if (target?.closest?.('[data-no-custom-cursor="true"]')) {
-      if (active.el) release();
+  const onWindowLeave = () => {
+    inside = false;
+    host.style.opacity = '0';
+  };
+
+  window.addEventListener('pointermove', onMove, { passive: true });
+  document.documentElement.addEventListener('pointerleave', onWindowLeave);
+  window.addEventListener('blur', onWindowLeave);
+
+  let activity = 0;
+  let raf = 0;
+  let last = performance.now();
+
+  const frame = (now) => {
+    const dt = Math.min(0.05, Math.max(0, (now - last) / 1000));
+    last = now;
+
+    if (!pool.length || !seen) {
+      raf = requestAnimationFrame(frame);
       return;
     }
-    const t = target?.closest?.('a, button, .cursor-can-hover, .theme-toggle, .social-icon, .btn');
-    if (t === active.el) return;
-    if (active.el) release();
-    if (t) acquire(t);
-  });
 
-  const onLeave = () => { if (active.el) release(); isHidden = true; };
-  const onEnter = () => { isHidden = false; };
+    const moving = now - lastMove < 100;
+    activity = moving
+      ? Math.min(1, activity + dt / 0.2)
+      : Math.max(0, activity - dt / IDLE_FADE_SECONDS);
+    const fadeMul = 1 - idleEase(1 - activity);
 
-  document.addEventListener('mouseleave', onLeave);
-  document.addEventListener('mouseenter', onEnter);
-  window.addEventListener('blur', onLeave);
+    const k = config.stiffness * 72 * (config.followSpeed / 10);
+    const retain = Math.max(0.05, 1 - config.damping / 20);
+    const decay = Math.pow(retain, dt * 60);
+    const pull = 1 - Math.exp(-dt / 0.028);
+    const spacing = Math.max(1, config.trailSpacing);
+    const size = config.pixelSize;
 
-  window.addEventListener('scroll', () => {
-    if (!active.el || !active.base) return;
-    const r = active.el.getBoundingClientRect();
-    active.base.left = r.left - active.offX;
-    active.base.top = r.top - active.offY;
-    active.base.width = r.width;
-    active.base.height = r.height;
-    active.base.cx = active.base.left + r.width / 2;
-    active.base.cy = active.base.top + r.height / 2;
-  }, { passive: true });
+    for (let i = 0; i < pool.length; i++) {
+      const px = pool[i];
+      const ax = i === 0 ? cursor.x : pool[i - 1].x;
+      const ay = i === 0 ? cursor.y : pool[i - 1].y;
+      const dx = ax - px.x;
+      const dy = ay - px.y;
+
+      px.vx = (px.vx + dx * k * dt) * decay;
+      px.vy = (px.vy + dy * k * dt) * decay;
+      px.x += px.vx * dt;
+      px.y += px.vy * dt;
+
+      if (i > 0) {
+        const dist = Math.hypot(dx, dy);
+        if (dist > spacing) {
+          const ratio = ((dist - spacing) / dist) * pull;
+          px.x += dx * ratio;
+          px.y += dy * ratio;
+        }
+      }
+
+      const progress = i / pool.length;
+      let opacity = config.fadeOut ? 1 - progress : 1;
+      let scale = config.scaleVariation ? 1 - progress * 0.5 : 1;
+      opacity *= fadeMul;
+      scale *= fadeMul;
+
+      const visible = config.trailStyle === 'dashed' ? i % 5 < 3 : true;
+
+      let offX = 0;
+      let offY = 0;
+      if (i > 0 && config.trailStyle === 'wave') {
+        const prev = pool[i - 1];
+        const sx = px.x - prev.x;
+        const sy = px.y - prev.y;
+        const len = Math.hypot(sx, sy);
+        if (len > 0) {
+          const amount = Math.sin(i * 0.3) * size * 2;
+          offX = (-sy / len) * amount;
+          offY = (sx / len) * amount;
+        }
+      }
+
+      const s = px.node.style;
+      const hide = !visible || opacity < 0.01 || scale <= 0;
+      if (hide !== px.hidden) {
+        s.display = hide ? 'none' : 'block';
+        px.hidden = hide;
+      }
+      if (hide) continue;
+
+      s.transform = `translate3d(${px.x + offX}px, ${px.y + offY}px, 0) translate(-50%, -50%) scale(${scale})`;
+      s.opacity = opacity.toFixed(3);
+    }
+
+    raf = requestAnimationFrame(frame);
+  };
+
+  raf = requestAnimationFrame(frame);
 }
 
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initElasticCursor);
+  document.addEventListener('DOMContentLoaded', () => initInkbleedCursor());
 } else {
-  initElasticCursor();
+  initInkbleedCursor();
 }
-*/
 
