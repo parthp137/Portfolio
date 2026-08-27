@@ -1,0 +1,621 @@
+================================================================================
+PARTH PATWARDHAN PORTFOLIO — THEMES ARCHIVE & COLOR PALETTES
+================================================================================
+This file contains the complete color schemes, CSS variables, heatmap styles,
+and components for Themes 2 through 6. You can copy and paste any of these
+theme definitions back into styles.css / script.js whenever needed.
+
+--------------------------------------------------------------------------------
+TABLE OF CONTENTS
+--------------------------------------------------------------------------------
+1. Theme 1 (Cyber Emerald) [ACTIVE DEFAULT]
+2. Theme 2 (Velvet Burgundy, Caramel & Cashmere)
+3. Theme 3 (Midnight Navy, Oatmeal & Terracotta Rust)
+4. Theme 4 (Obsidian Navy, Denim & Coral Sunset)
+5. Theme 5 (Charcoal Slate & Crimson Ruby)
+6. Theme 6 (Arctic Teal & Frosted Glacier)
+7. HTML & JS Switcher Snippets (If you want to re-enable the palette switcher)
+
+================================================================================
+1. THEME 1: CYBER EMERALD (CURRENT ACTIVE DEFAULT)
+================================================================================
+Palette Swatches:
+- Dark BG Primary: #0c0d10 | Secondary: #131418 | Card: #111216
+- Light BG Primary: #f8fafc | Secondary: #f1f5f9 | Card: #ffffff
+- Accent: #37ff8b (Cyber Emerald) | Hover: #2ee67a
+- Text Primary (Dark): #f8fafc | Secondary: #cbd5e1
+- Text Primary (Light): #0f172a | Secondary: #334155
+
+================================================================================
+2. THEME 2: LUXURY BURGUNDY, CARAMEL & CASHMERE
+================================================================================
+Palette Swatches:
+- Alabaster Cream: #F5F2ED
+- Cashmere Beige:  #D6CDC4
+- Caramel Tan:     #BA9E7E (Accent)
+- Velvet Burgundy: #642E3B (Secondary Accent)
+- Deep Dark Wine:  #241018 (Dark BG)
+
+--- CSS VARIABLES (THEME 2) ---
+
+/* Theme 2 Dark Mode */
+body.theme-2 {
+  --bg-primary: #190b10;
+  --bg-secondary: #220f16;
+  --bg-tertiary: #2a131b;
+  --bg-card: #251018;
+  --bg-card-gradient: linear-gradient(145deg, #2e141e, #1f0c13);
+  --bg-card-hover: linear-gradient(145deg, #3c1a27, #240e17);
+  --bg-input: #2a131b;
+  --text-primary: #f8f5f1;
+  --text-secondary: #dcd3cb;
+  --text-muted: #a4968e;
+  --accent: #ba9e7e;
+  --accent-hover: #cbb092;
+  --accent-glow: rgba(186, 158, 126, 0.38);
+  --accent-subtle: rgba(186, 158, 126, 0.12);
+  --accent-subtle-hover: rgba(186, 158, 126, 0.22);
+  --accent-border: rgba(186, 158, 126, 0.28);
+  --border-color: rgba(220, 211, 203, 0.12);
+  --border-hover: rgba(186, 158, 126, 0.5);
+  --shadow: rgba(10, 3, 6, 0.7);
+  --card-shadow: 0 10px 30px rgba(10, 3, 6, 0.55);
+  --card-shadow-hover: 0 20px 45px rgba(186, 158, 126, 0.18), 0 10px 30px rgba(10, 3, 6, 0.65);
+  --navbar-bg: rgba(25, 11, 16, 0.88);
+  --hero-card-bg: #261119;
+  --hero-card-shadow: 0 30px 70px rgba(0, 0, 0, 0.85), 0 0 35px rgba(186, 158, 126, 0.25);
+  --hero-card-border: rgba(186, 158, 126, 0.45);
+  --hero-card-outline: rgba(100, 46, 59, 0.4);
+  --winner-bg: linear-gradient(135deg, rgba(186, 158, 126, 0.22), rgba(100, 46, 59, 0.3));
+  --winner-color: #ba9e7e;
+  --finalist-bg: linear-gradient(135deg, rgba(100, 46, 59, 0.32), rgba(186, 158, 126, 0.18));
+  --finalist-color: #dcd3cb;
+  --btn-primary-color: #190b10;
+  --btn-primary-shadow: 0 12px 30px rgba(186, 158, 126, 0.35);
+  --btn-primary-shadow-hover: 0 16px 40px rgba(186, 158, 126, 0.52);
+  --input-focus-border: rgba(186, 158, 126, 0.75);
+  --input-focus-shadow: 0 0 0 3px rgba(186, 158, 126, 0.2);
+}
+
+/* Theme 2 Light Mode */
+body.theme-2.light-theme {
+  --bg-primary: #f5f2ed;
+  --bg-secondary: #ebe4dc;
+  --bg-tertiary: #dfd7ce;
+  --bg-card: #ffffff;
+  --bg-card-gradient: linear-gradient(145deg, #ffffff, #f7f4ee);
+  --bg-card-hover: linear-gradient(145deg, #ffffff, #efe8df);
+  --bg-input: #ffffff;
+  --text-primary: #291218;
+  --text-secondary: #4f2832;
+  --text-muted: #85706c;
+  --accent: #642e3b;
+  --accent-hover: #4d212b;
+  --accent-glow: rgba(100, 46, 59, 0.28);
+  --accent-subtle: rgba(100, 46, 59, 0.08);
+  --accent-subtle-hover: rgba(100, 46, 59, 0.16);
+  --accent-border: rgba(100, 46, 59, 0.25);
+  --border-color: rgba(41, 18, 24, 0.09);
+  --border-hover: rgba(100, 46, 59, 0.45);
+  --shadow: rgba(41, 18, 24, 0.06);
+  --card-shadow: 0 8px 24px -4px rgba(41, 18, 24, 0.08), 0 2px 6px -2px rgba(41, 18, 24, 0.04);
+  --card-shadow-hover: 0 20px 35px -8px rgba(100, 46, 59, 0.2), 0 4px 10px -2px rgba(41, 18, 24, 0.05);
+  --navbar-bg: rgba(245, 242, 237, 0.88);
+  --hero-card-bg: #dfd7ce;
+  --hero-card-shadow: 0 25px 50px -12px rgba(41, 18, 24, 0.2), 0 0 25px rgba(100, 46, 59, 0.18);
+  --hero-card-border: rgba(100, 46, 59, 0.4);
+  --hero-card-outline: rgba(186, 158, 126, 0.35);
+  --winner-bg: linear-gradient(135deg, rgba(186, 158, 126, 0.25), rgba(100, 46, 59, 0.15));
+  --winner-color: #642e3b;
+  --finalist-bg: linear-gradient(135deg, rgba(100, 46, 59, 0.15), rgba(186, 158, 126, 0.2));
+  --finalist-color: #642e3b;
+  --btn-primary-color: #ffffff;
+  --btn-primary-shadow: 0 10px 25px -4px rgba(100, 46, 59, 0.35);
+  --btn-primary-shadow-hover: 0 16px 32px -4px rgba(100, 46, 59, 0.48);
+  --input-focus-border: var(--accent);
+  --input-focus-shadow: 0 0 0 3px rgba(100, 46, 59, 0.18);
+}
+
+/* Theme 2 Heatmap & Elements */
+body.theme-2 .level-0 { background-color: rgba(220, 211, 203, 0.07); border: 1px solid rgba(220, 211, 203, 0.05); }
+body.theme-2 .level-1 { background-color: #4a1f29; }
+body.theme-2 .level-2 { background-color: #6d2f3d; }
+body.theme-2 .level-3 { background-color: #944455; }
+body.theme-2 .level-4 { background-color: #ba9e7e; box-shadow: 0 0 6px rgba(186, 158, 126, 0.5); }
+body.theme-2.light-theme .level-0 { background-color: #dfd7ce; border: 1px solid rgba(41, 18, 24, 0.06); }
+body.theme-2.light-theme .level-1 { background-color: #cbb193; }
+body.theme-2.light-theme .level-2 { background-color: #9e4b5c; }
+body.theme-2.light-theme .level-3 { background-color: #733543; }
+body.theme-2.light-theme .level-4 { background-color: #451b24; box-shadow: 0 0 4px rgba(69, 27, 36, 0.35); }
+body.theme-2 .scroll-progress-bar { background: linear-gradient(90deg, #ba9e7e, #642e3b); box-shadow: 0 0 12px rgba(186, 158, 126, 0.45); }
+body.theme-2 .skill-category::before { background: linear-gradient(90deg, #ba9e7e, #642e3b); }
+body.theme-2 .achievement-card::before { background: linear-gradient(180deg, #ba9e7e, #642e3b); }
+body.theme-2.light-theme .scroll-progress-bar { background: linear-gradient(90deg, #642e3b, #ba9e7e); box-shadow: 0 0 12px rgba(100, 46, 59, 0.35); }
+body.theme-2.light-theme .skill-category::before { background: linear-gradient(90deg, #642e3b, #ba9e7e); }
+body.theme-2.light-theme .achievement-card::before { background: linear-gradient(180deg, #642e3b, #ba9e7e); }
+
+
+================================================================================
+3. THEME 3: MIDNIGHT NAVY, OATMEAL & TERRACOTTA
+================================================================================
+Palette Swatches:
+- Midnight Navy:   #0B1320 (Dark BG)
+- Slate Navy:      #1F2A44
+- Warm Ivory:      #F2EFE8 (Light BG)
+- Warm Taupe:      #C7B8A6
+- Terracotta Rust: #B46A55 (Accent)
+
+--- CSS VARIABLES (THEME 3) ---
+
+/* Theme 3 Dark Mode */
+body.theme-3 {
+  --bg-primary: #0b1320;
+  --bg-secondary: #131e30;
+  --bg-tertiary: #1a273e;
+  --bg-card: #152236;
+  --bg-card-gradient: linear-gradient(145deg, #1d2b45, #111a2a);
+  --bg-card-hover: linear-gradient(145deg, #263859, #162438);
+  --bg-input: #1a273e;
+  --text-primary: #f2efe8;
+  --text-secondary: #c7b8a6;
+  --text-muted: #968978;
+  --accent: #b46a55;
+  --accent-hover: #c97963;
+  --accent-glow: rgba(180, 106, 85, 0.4);
+  --accent-subtle: rgba(180, 106, 85, 0.12);
+  --accent-subtle-hover: rgba(180, 106, 85, 0.22);
+  --accent-border: rgba(180, 106, 85, 0.28);
+  --border-color: rgba(199, 184, 166, 0.12);
+  --border-hover: rgba(180, 106, 85, 0.48);
+  --shadow: rgba(5, 9, 15, 0.7);
+  --card-shadow: 0 10px 30px rgba(5, 9, 15, 0.55);
+  --card-shadow-hover: 0 20px 45px rgba(180, 106, 85, 0.18), 0 10px 30px rgba(5, 9, 15, 0.65);
+  --navbar-bg: rgba(11, 19, 32, 0.88);
+  --hero-card-bg: #152236;
+  --hero-card-shadow: 0 30px 70px rgba(0, 0, 0, 0.85), 0 0 35px rgba(180, 106, 85, 0.25);
+  --hero-card-border: rgba(180, 106, 85, 0.45);
+  --hero-card-outline: rgba(199, 184, 166, 0.25);
+  --winner-bg: linear-gradient(135deg, rgba(180, 106, 85, 0.25), rgba(199, 184, 166, 0.15));
+  --winner-color: #c7b8a6;
+  --finalist-bg: linear-gradient(135deg, rgba(31, 42, 68, 0.5), rgba(180, 106, 85, 0.2));
+  --finalist-color: #b46a55;
+  --btn-primary-color: #0b1320;
+  --btn-primary-shadow: 0 12px 30px rgba(180, 106, 85, 0.35);
+  --btn-primary-shadow-hover: 0 16px 40px rgba(180, 106, 85, 0.52);
+  --input-focus-border: rgba(180, 106, 85, 0.75);
+  --input-focus-shadow: 0 0 0 3px rgba(180, 106, 85, 0.2);
+}
+
+/* Theme 3 Light Mode */
+body.theme-3.light-theme {
+  --bg-primary: #f2efe8;
+  --bg-secondary: #e5e0d5;
+  --bg-tertiary: #d8d1c3;
+  --bg-card: #ffffff;
+  --bg-card-gradient: linear-gradient(145deg, #ffffff, #f4f1eb);
+  --bg-card-hover: linear-gradient(145deg, #ffffff, #ede7db);
+  --bg-input: #ffffff;
+  --text-primary: #0b1320;
+  --text-secondary: #1f2a44;
+  --text-muted: #6b6357;
+  --accent: #b46a55;
+  --accent-hover: #9c5542;
+  --accent-glow: rgba(180, 106, 85, 0.3);
+  --accent-subtle: rgba(180, 106, 85, 0.08);
+  --accent-subtle-hover: rgba(180, 106, 85, 0.16);
+  --accent-border: rgba(180, 106, 85, 0.25);
+  --border-color: rgba(11, 19, 32, 0.08);
+  --border-hover: rgba(180, 106, 85, 0.45);
+  --shadow: rgba(11, 19, 32, 0.06);
+  --card-shadow: 0 8px 24px -4px rgba(11, 19, 32, 0.08), 0 2px 6px -2px rgba(11, 19, 32, 0.04);
+  --card-shadow-hover: 0 20px 35px -8px rgba(180, 106, 85, 0.2), 0 4px 10px -2px rgba(11, 19, 32, 0.05);
+  --navbar-bg: rgba(242, 239, 232, 0.88);
+  --hero-card-bg: #d8d1c3;
+  --hero-card-shadow: 0 25px 50px -12px rgba(11, 19, 32, 0.2), 0 0 25px rgba(180, 106, 85, 0.18);
+  --hero-card-border: rgba(180, 106, 85, 0.4);
+  --hero-card-outline: rgba(31, 42, 68, 0.25);
+  --winner-bg: linear-gradient(135deg, rgba(180, 106, 85, 0.2), rgba(31, 42, 68, 0.1));
+  --winner-color: #b46a55;
+  --finalist-bg: linear-gradient(135deg, rgba(31, 42, 68, 0.12), rgba(180, 106, 85, 0.15));
+  --finalist-color: #1f2a44;
+  --btn-primary-color: #ffffff;
+  --btn-primary-shadow: 0 10px 25px -4px rgba(180, 106, 85, 0.35);
+  --btn-primary-shadow-hover: 0 16px 32px -4px rgba(180, 106, 85, 0.48);
+  --input-focus-border: var(--accent);
+  --input-focus-shadow: 0 0 0 3px rgba(180, 106, 85, 0.18);
+}
+
+/* Theme 3 Heatmap & Elements */
+body.theme-3 .level-0 { background-color: rgba(199, 184, 166, 0.07); border: 1px solid rgba(199, 184, 166, 0.05); }
+body.theme-3 .level-1 { background-color: #1f2a44; }
+body.theme-3 .level-2 { background-color: #5c4442; }
+body.theme-3 .level-3 { background-color: #8c5344; }
+body.theme-3 .level-4 { background-color: #b46a55; box-shadow: 0 0 6px rgba(180, 106, 85, 0.5); }
+body.theme-3.light-theme .level-0 { background-color: #d8d1c3; border: 1px solid rgba(11, 19, 32, 0.06); }
+body.theme-3.light-theme .level-1 { background-color: #c7b8a6; }
+body.theme-3.light-theme .level-2 { background-color: #9c5542; }
+body.theme-3.light-theme .level-3 { background-color: #7a3e2f; }
+body.theme-3.light-theme .level-4 { background-color: #4a2118; box-shadow: 0 0 4px rgba(74, 33, 24, 0.35); }
+body.theme-3 .scroll-progress-bar { background: linear-gradient(90deg, #b46a55, #c7b8a6); box-shadow: 0 0 12px rgba(180, 106, 85, 0.45); }
+body.theme-3 .skill-category::before { background: linear-gradient(90deg, #b46a55, #c7b8a6); }
+body.theme-3 .achievement-card::before { background: linear-gradient(180deg, #b46a55, #1f2a44); }
+
+
+================================================================================
+4. THEME 4: OBSIDIAN NAVY, DENIM & CORAL SUNSET
+================================================================================
+Palette Swatches:
+- Obsidian Navy:   #0D1B2A (Dark BG)
+- Slate Blue:      #1B263B
+- Denim Steel:     #415A77
+- Platinum Silver: #E0E1DD (Light BG)
+- Coral Sunset:    #FF5D5D (Accent)
+
+--- CSS VARIABLES (THEME 4) ---
+
+/* Theme 4 Dark Mode */
+body.theme-4 {
+  --bg-primary: #0d1b2a;
+  --bg-secondary: #142337;
+  --bg-tertiary: #1b2c45;
+  --bg-card: #17273d;
+  --bg-card-gradient: linear-gradient(145deg, #1f324d, #121f31);
+  --bg-card-hover: linear-gradient(145deg, #273e5f, #18273d);
+  --bg-input: #1b2c45;
+  --text-primary: #e0e1dd;
+  --text-secondary: #9cb2cc;
+  --text-muted: #778da9;
+  --accent: #ff5d5d;
+  --accent-hover: #ff7878;
+  --accent-glow: rgba(255, 93, 93, 0.4);
+  --accent-subtle: rgba(255, 93, 93, 0.12);
+  --accent-subtle-hover: rgba(255, 93, 93, 0.22);
+  --accent-border: rgba(255, 93, 93, 0.28);
+  --border-color: rgba(224, 225, 221, 0.1);
+  --border-hover: rgba(255, 93, 93, 0.48);
+  --shadow: rgba(4, 8, 14, 0.7);
+  --card-shadow: 0 10px 30px rgba(4, 8, 14, 0.55);
+  --card-shadow-hover: 0 20px 45px rgba(255, 93, 93, 0.18), 0 10px 30px rgba(4, 8, 14, 0.65);
+  --navbar-bg: rgba(13, 27, 42, 0.88);
+  --hero-card-bg: #17273d;
+  --hero-card-shadow: 0 30px 70px rgba(0, 0, 0, 0.85), 0 0 35px rgba(255, 93, 93, 0.25);
+  --hero-card-border: rgba(255, 93, 93, 0.45);
+  --hero-card-outline: rgba(65, 90, 119, 0.4);
+  --winner-bg: linear-gradient(135deg, rgba(255, 93, 93, 0.25), rgba(65, 90, 119, 0.25));
+  --winner-color: #ff5d5d;
+  --finalist-bg: linear-gradient(135deg, rgba(65, 90, 119, 0.35), rgba(255, 93, 93, 0.15));
+  --finalist-color: #e0e1dd;
+  --btn-primary-color: #0d1b2a;
+  --btn-primary-shadow: 0 12px 30px rgba(255, 93, 93, 0.35);
+  --btn-primary-shadow-hover: 0 16px 40px rgba(255, 93, 93, 0.52);
+  --input-focus-border: rgba(255, 93, 93, 0.75);
+  --input-focus-shadow: 0 0 0 3px rgba(255, 93, 93, 0.2);
+}
+
+/* Theme 4 Light Mode */
+body.theme-4.light-theme {
+  --bg-primary: #e0e1dd;
+  --bg-secondary: #d1d4ce;
+  --bg-tertiary: #c2c6be;
+  --bg-card: #ffffff;
+  --bg-card-gradient: linear-gradient(145deg, #ffffff, #e5e6e3);
+  --bg-card-hover: linear-gradient(145deg, #ffffff, #dcddd9);
+  --bg-input: #ffffff;
+  --text-primary: #0d1b2a;
+  --text-secondary: #1b263b;
+  --text-muted: #556b82;
+  --accent: #ff5d5d;
+  --accent-hover: #e04545;
+  --accent-glow: rgba(255, 93, 93, 0.3);
+  --accent-subtle: rgba(255, 93, 93, 0.08);
+  --accent-subtle-hover: rgba(255, 93, 93, 0.16);
+  --accent-border: rgba(255, 93, 93, 0.25);
+  --border-color: rgba(13, 27, 42, 0.08);
+  --border-hover: rgba(255, 93, 93, 0.45);
+  --shadow: rgba(13, 27, 42, 0.06);
+  --card-shadow: 0 8px 24px -4px rgba(13, 27, 42, 0.08), 0 2px 6px -2px rgba(13, 27, 42, 0.04);
+  --card-shadow-hover: 0 20px 35px -8px rgba(255, 93, 93, 0.2), 0 4px 10px -2px rgba(13, 27, 42, 0.05);
+  --navbar-bg: rgba(224, 225, 221, 0.88);
+  --hero-card-bg: #c2c6be;
+  --hero-card-shadow: 0 25px 50px -12px rgba(13, 27, 42, 0.2), 0 0 25px rgba(255, 93, 93, 0.18);
+  --hero-card-border: rgba(255, 93, 93, 0.4);
+  --hero-card-outline: rgba(65, 90, 119, 0.25);
+  --winner-bg: linear-gradient(135deg, rgba(255, 93, 93, 0.2), rgba(65, 90, 119, 0.1));
+  --winner-color: #ff5d5d;
+  --finalist-bg: linear-gradient(135deg, rgba(65, 90, 119, 0.15), rgba(255, 93, 93, 0.15));
+  --finalist-color: #1b263b;
+  --btn-primary-color: #ffffff;
+  --btn-primary-shadow: 0 10px 25px -4px rgba(255, 93, 93, 0.35);
+  --btn-primary-shadow-hover: 0 16px 32px -4px rgba(255, 93, 93, 0.48);
+  --input-focus-border: var(--accent);
+  --input-focus-shadow: 0 0 0 3px rgba(255, 93, 93, 0.18);
+}
+
+/* Theme 4 Heatmap & Elements */
+body.theme-4 .level-0 { background-color: rgba(224, 225, 221, 0.07); border: 1px solid rgba(224, 225, 221, 0.05); }
+body.theme-4 .level-1 { background-color: #1b263b; }
+body.theme-4 .level-2 { background-color: #415a77; }
+body.theme-4 .level-3 { background-color: #ba4a56; }
+body.theme-4 .level-4 { background-color: #ff5d5d; box-shadow: 0 0 6px rgba(255, 93, 93, 0.5); }
+body.theme-4.light-theme .level-0 { background-color: #c2c6be; border: 1px solid rgba(13, 27, 42, 0.06); }
+body.theme-4.light-theme .level-1 { background-color: #415a77; }
+body.theme-4.light-theme .level-2 { background-color: #d93838; }
+body.theme-4.light-theme .level-3 { background-color: #b32626; }
+body.theme-4.light-theme .level-4 { background-color: #7a1515; box-shadow: 0 0 4px rgba(122, 21, 21, 0.35); }
+body.theme-4 .scroll-progress-bar { background: linear-gradient(90deg, #ff5d5d, #415a77); box-shadow: 0 0 12px rgba(255, 93, 93, 0.45); }
+body.theme-4 .skill-category::before { background: linear-gradient(90deg, #ff5d5d, #415a77); }
+body.theme-4 .achievement-card::before { background: linear-gradient(180deg, #ff5d5d, #415a77); }
+
+
+================================================================================
+5. THEME 5: CHARCOAL SLATE & CRIMSON RUBY
+================================================================================
+Palette Swatches:
+- Charcoal Navy: #1A2433 (Dark BG)
+- Slate Steel:   #334155
+- Cool Slate:    #64748B
+- Ice White:     #F1F5F9 (Light BG)
+- Crimson Ruby:  #E11D48 (Accent)
+
+--- CSS VARIABLES (THEME 5) ---
+
+/* Theme 5 Dark Mode */
+body.theme-5 {
+  --bg-primary: #1a2433;
+  --bg-secondary: #222f42;
+  --bg-tertiary: #2a3a50;
+  --bg-card: #243347;
+  --bg-card-gradient: linear-gradient(145deg, #2c3e56, #1e2a3b);
+  --bg-card-hover: linear-gradient(145deg, #364b69, #233144);
+  --bg-input: #2a3a50;
+  --text-primary: #f1f5f9;
+  --text-secondary: #a3b3c9;
+  --text-muted: #64748b;
+  --accent: #e11d48;
+  --accent-hover: #f43f5e;
+  --accent-glow: rgba(225, 29, 72, 0.4);
+  --accent-subtle: rgba(225, 29, 72, 0.12);
+  --accent-subtle-hover: rgba(225, 29, 72, 0.22);
+  --accent-border: rgba(225, 29, 72, 0.28);
+  --border-color: rgba(241, 245, 249, 0.1);
+  --border-hover: rgba(225, 29, 72, 0.48);
+  --shadow: rgba(10, 15, 22, 0.7);
+  --card-shadow: 0 10px 30px rgba(10, 15, 22, 0.55);
+  --card-shadow-hover: 0 20px 45px rgba(225, 29, 72, 0.18), 0 10px 30px rgba(10, 15, 22, 0.65);
+  --navbar-bg: rgba(26, 36, 51, 0.88);
+  --hero-card-bg: #243347;
+  --hero-card-shadow: 0 30px 70px rgba(0, 0, 0, 0.85), 0 0 35px rgba(225, 29, 72, 0.25);
+  --hero-card-border: rgba(225, 29, 72, 0.45);
+  --hero-card-outline: rgba(100, 116, 139, 0.35);
+  --winner-bg: linear-gradient(135deg, rgba(225, 29, 72, 0.25), rgba(100, 116, 139, 0.25));
+  --winner-color: #f43f5e;
+  --finalist-bg: linear-gradient(135deg, rgba(100, 116, 139, 0.35), rgba(225, 29, 72, 0.15));
+  --finalist-color: #f1f5f9;
+  --btn-primary-color: #ffffff;
+  --btn-primary-shadow: 0 12px 30px rgba(225, 29, 72, 0.35);
+  --btn-primary-shadow-hover: 0 16px 40px rgba(225, 29, 72, 0.52);
+  --input-focus-border: rgba(225, 29, 72, 0.75);
+  --input-focus-shadow: 0 0 0 3px rgba(225, 29, 72, 0.2);
+}
+
+/* Theme 5 Light Mode */
+body.theme-5.light-theme {
+  --bg-primary: #f1f5f9;
+  --bg-secondary: #e2e8f0;
+  --bg-tertiary: #cbd5e1;
+  --bg-card: #ffffff;
+  --bg-card-gradient: linear-gradient(145deg, #ffffff, #f8fafc);
+  --bg-card-hover: linear-gradient(145deg, #ffffff, #f1f5f9);
+  --bg-input: #ffffff;
+  --text-primary: #1a2433;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --accent: #e11d48;
+  --accent-hover: #be123c;
+  --accent-glow: rgba(225, 29, 72, 0.28);
+  --accent-subtle: rgba(225, 29, 72, 0.08);
+  --accent-subtle-hover: rgba(225, 29, 72, 0.16);
+  --accent-border: rgba(225, 29, 72, 0.25);
+  --border-color: rgba(26, 36, 51, 0.08);
+  --border-hover: rgba(225, 29, 72, 0.45);
+  --shadow: rgba(26, 36, 51, 0.06);
+  --card-shadow: 0 8px 24px -4px rgba(26, 36, 51, 0.08), 0 2px 6px -2px rgba(26, 36, 51, 0.04);
+  --card-shadow-hover: 0 20px 35px -8px rgba(225, 29, 72, 0.2), 0 4px 10px -2px rgba(26, 36, 51, 0.05);
+  --navbar-bg: rgba(241, 245, 249, 0.88);
+  --hero-card-bg: #cbd5e1;
+  --hero-card-shadow: 0 25px 50px -12px rgba(26, 36, 51, 0.2), 0 0 25px rgba(225, 29, 72, 0.18);
+  --hero-card-border: rgba(225, 29, 72, 0.4);
+  --hero-card-outline: rgba(100, 116, 139, 0.25);
+  --winner-bg: linear-gradient(135deg, rgba(225, 29, 72, 0.2), rgba(100, 116, 139, 0.1));
+  --winner-color: #e11d48;
+  --finalist-bg: linear-gradient(135deg, rgba(100, 116, 139, 0.15), rgba(225, 29, 72, 0.15));
+  --finalist-color: #1a2433;
+  --btn-primary-color: #ffffff;
+  --btn-primary-shadow: 0 10px 25px -4px rgba(225, 29, 72, 0.35);
+  --btn-primary-shadow-hover: 0 16px 32px -4px rgba(225, 29, 72, 0.48);
+  --input-focus-border: var(--accent);
+  --input-focus-shadow: 0 0 0 3px rgba(225, 29, 72, 0.18);
+}
+
+/* Theme 5 Heatmap & Elements */
+body.theme-5 .level-0 { background-color: rgba(241, 245, 249, 0.07); border: 1px solid rgba(241, 245, 249, 0.05); }
+body.theme-5 .level-1 { background-color: #334155; }
+body.theme-5 .level-2 { background-color: #64748b; }
+body.theme-5 .level-3 { background-color: #9f1239; }
+body.theme-5 .level-4 { background-color: #e11d48; box-shadow: 0 0 6px rgba(225, 29, 72, 0.5); }
+body.theme-5.light-theme .level-0 { background-color: #cbd5e1; border: 1px solid rgba(26, 36, 51, 0.06); }
+body.theme-5.light-theme .level-1 { background-color: #64748b; }
+body.theme-5.light-theme .level-2 { background-color: #be123c; }
+body.theme-5.light-theme .level-3 { background-color: #881337; }
+body.theme-5.light-theme .level-4 { background-color: #4c0519; box-shadow: 0 0 4px rgba(76, 5, 25, 0.35); }
+body.theme-5 .scroll-progress-bar { background: linear-gradient(90deg, #e11d48, #64748b); box-shadow: 0 0 12px rgba(225, 29, 72, 0.45); }
+body.theme-5 .skill-category::before { background: linear-gradient(90deg, #e11d48, #64748b); }
+body.theme-5 .achievement-card::before { background: linear-gradient(180deg, #e11d48, #334155); }
+
+
+================================================================================
+6. THEME 6: ARCTIC TEAL & FROSTED GLACIER
+================================================================================
+Palette Swatches:
+- Abyss Teal:         #0F1F2B (Dark BG)
+- Oceanic Pine Teal:  #1F4D5A (Light Accent / Dark Secondary)
+- Coastal Teal:       #5EA3A3 (Dark Accent / Light Secondary)
+- Frosted Aqua:       #D9F1EF (Light Tertiary)
+- Arctic Crisp White: #F4FBFA (Light BG)
+
+--- CSS VARIABLES (THEME 6) ---
+
+/* Theme 6 Dark Mode */
+body.theme-6 {
+  --bg-primary: #0f1f2b;
+  --bg-secondary: #152939;
+  --bg-tertiary: #1c3549;
+  --bg-card: #173043;
+  --bg-card-gradient: linear-gradient(145deg, #1e4554, #122535);
+  --bg-card-hover: linear-gradient(145deg, #25586b, #172f42);
+  --bg-input: #1c3549;
+  --text-primary: #f4fbfa;
+  --text-secondary: #d9f1ef;
+  --text-muted: #88b0b5;
+  --accent: #5ea3a3;
+  --accent-hover: #75b8b8;
+  --accent-glow: rgba(94, 163, 163, 0.4);
+  --accent-subtle: rgba(94, 163, 163, 0.12);
+  --accent-subtle-hover: rgba(94, 163, 163, 0.22);
+  --accent-border: rgba(94, 163, 163, 0.28);
+  --border-color: rgba(217, 241, 239, 0.1);
+  --border-hover: rgba(94, 163, 163, 0.5);
+  --shadow: rgba(5, 12, 18, 0.7);
+  --card-shadow: 0 10px 30px rgba(5, 12, 18, 0.55);
+  --card-shadow-hover: 0 20px 45px rgba(94, 163, 163, 0.18), 0 10px 30px rgba(5, 12, 18, 0.65);
+  --navbar-bg: rgba(15, 31, 43, 0.88);
+  --hero-card-bg: #173043;
+  --hero-card-shadow: 0 30px 70px rgba(0, 0, 0, 0.85), 0 0 35px rgba(94, 163, 163, 0.25);
+  --hero-card-border: rgba(94, 163, 163, 0.45);
+  --hero-card-outline: rgba(31, 77, 90, 0.4);
+  --winner-bg: linear-gradient(135deg, rgba(94, 163, 163, 0.25), rgba(31, 77, 90, 0.3));
+  --winner-color: #5ea3a3;
+  --finalist-bg: linear-gradient(135deg, rgba(31, 77, 90, 0.35), rgba(94, 163, 163, 0.18));
+  --finalist-color: #d9f1ef;
+  --btn-primary-color: #0f1f2b;
+  --btn-primary-shadow: 0 12px 30px rgba(94, 163, 163, 0.35);
+  --btn-primary-shadow-hover: 0 16px 40px rgba(94, 163, 163, 0.52);
+  --input-focus-border: rgba(94, 163, 163, 0.75);
+  --input-focus-shadow: 0 0 0 3px rgba(94, 163, 163, 0.2);
+}
+
+/* Theme 6 Light Mode */
+body.theme-6.light-theme {
+  --bg-primary: #f4fbfa;
+  --bg-secondary: #e5f4f2;
+  --bg-tertiary: #d9f1ef;
+  --bg-card: #ffffff;
+  --bg-card-gradient: linear-gradient(145deg, #ffffff, #f0f9f8);
+  --bg-card-hover: linear-gradient(145deg, #ffffff, #e7f6f4);
+  --bg-input: #ffffff;
+  --text-primary: #0f1f2b;
+  --text-secondary: #1f4d5a;
+  --text-muted: #527c85;
+  --accent: #1f4d5a;
+  --accent-hover: #13343d;
+  --accent-glow: rgba(31, 77, 90, 0.25);
+  --accent-subtle: rgba(31, 77, 90, 0.08);
+  --accent-subtle-hover: rgba(31, 77, 90, 0.15);
+  --accent-border: rgba(31, 77, 90, 0.25);
+  --border-color: rgba(15, 31, 43, 0.08);
+  --border-hover: rgba(31, 77, 90, 0.45);
+  --shadow: rgba(15, 31, 43, 0.06);
+  --card-shadow: 0 8px 24px -4px rgba(15, 31, 43, 0.08), 0 2px 6px -2px rgba(15, 31, 43, 0.04);
+  --card-shadow-hover: 0 20px 35px -8px rgba(31, 77, 90, 0.2), 0 4px 10px -2px rgba(15, 31, 43, 0.05);
+  --navbar-bg: rgba(244, 251, 250, 0.88);
+  --hero-card-bg: #d9f1ef;
+  --hero-card-shadow: 0 25px 50px -12px rgba(15, 31, 43, 0.2), 0 0 25px rgba(31, 77, 90, 0.18);
+  --hero-card-border: rgba(31, 77, 90, 0.4);
+  --hero-card-outline: rgba(94, 163, 163, 0.35);
+  --winner-bg: linear-gradient(135deg, rgba(94, 163, 163, 0.2), rgba(31, 77, 90, 0.1));
+  --winner-color: #1f4d5a;
+  --finalist-bg: linear-gradient(135deg, rgba(31, 77, 90, 0.12), rgba(94, 163, 163, 0.15));
+  --finalist-color: #1f4d5a;
+  --btn-primary-color: #ffffff;
+  --btn-primary-shadow: 0 10px 25px -4px rgba(31, 77, 90, 0.35);
+  --btn-primary-shadow-hover: 0 16px 32px -4px rgba(31, 77, 90, 0.48);
+  --input-focus-border: var(--accent);
+  --input-focus-shadow: 0 0 0 3px rgba(31, 77, 90, 0.18);
+}
+
+/* Theme 6 Heatmap & Elements */
+body.theme-6 .level-0 { background-color: rgba(217, 241, 239, 0.07); border: 1px solid rgba(217, 241, 239, 0.05); }
+body.theme-6 .level-1 { background-color: #163742; }
+body.theme-6 .level-2 { background-color: #1f4d5a; }
+body.theme-6 .level-3 { background-color: #3e7d82; }
+body.theme-6 .level-4 { background-color: #5ea3a3; box-shadow: 0 0 6px rgba(94, 163, 163, 0.5); }
+body.theme-6.light-theme .level-0 { background-color: #d9f1ef; border: 1px solid rgba(15, 31, 43, 0.06); }
+body.theme-6.light-theme .level-1 { background-color: #9fd1cb; }
+body.theme-6.light-theme .level-2 { background-color: #5ea3a3; }
+body.theme-6.light-theme .level-3 { background-color: #336d75; }
+body.theme-6.light-theme .level-4 { background-color: #1f4d5a; box-shadow: 0 0 4px rgba(31, 77, 90, 0.35); }
+body.theme-6 .scroll-progress-bar { background: linear-gradient(90deg, #5ea3a3, #1f4d5a); box-shadow: 0 0 12px rgba(94, 163, 163, 0.45); }
+body.theme-6 .skill-category::before { background: linear-gradient(90deg, #5ea3a3, #1f4d5a); }
+body.theme-6 .achievement-card::before { background: linear-gradient(180deg, #5ea3a3, #1f4d5a); }
+
+
+================================================================================
+7. HTML & JS SNIPPETS (TO RE-ENABLE THE PALETTE SWITCHER)
+================================================================================
+
+--- HTML (Navbar Switcher) ---
+<div class="theme-switcher-nav" aria-label="Theme Palette Switcher">
+  <button class="theme-btn-option is-active" data-theme-target="1" title="Theme 1: Cyber Emerald">
+    <span class="theme-swatch-dot theme-swatch-1"></span>
+  </button>
+  <button class="theme-btn-option" data-theme-target="2" title="Theme 2: Velvet Burgundy & Caramel">
+    <span class="theme-swatch-dot theme-swatch-2"></span>
+  </button>
+  <button class="theme-btn-option" data-theme-target="3" title="Theme 3: Midnight Navy & Terracotta">
+    <span class="theme-swatch-dot theme-swatch-3"></span>
+  </button>
+  <button class="theme-btn-option" data-theme-target="4" title="Theme 4: Obsidian Navy & Coral Sunset">
+    <span class="theme-swatch-dot theme-swatch-4"></span>
+  </button>
+  <button class="theme-btn-option" data-theme-target="5" title="Theme 5: Charcoal Slate & Crimson Ruby">
+    <span class="theme-swatch-dot theme-swatch-5"></span>
+  </button>
+  <button class="theme-btn-option" data-theme-target="6" title="Theme 6: Arctic Teal & Frosted Glacier">
+    <span class="theme-swatch-dot theme-swatch-6"></span>
+  </button>
+</div>
+
+--- HTML (Floating Theme Bar) ---
+<div class="floating-theme-bar" aria-label="Theme Selector">
+  <span class="floating-theme-label"><i class="fas fa-palette"></i> Palette:</span>
+  <button class="theme-btn-option is-active" data-theme-target="1">T1 (Emerald)</button>
+  <button class="theme-btn-option" data-theme-target="2">T2 (Burgundy)</button>
+  <button class="theme-btn-option" data-theme-target="3">T3 (Terracotta)</button>
+  <button class="theme-btn-option" data-theme-target="4">T4 (Coral)</button>
+  <button class="theme-btn-option" data-theme-target="5">T5 (Ruby)</button>
+  <button class="theme-btn-option" data-theme-target="6">T6 (Arctic Teal)</button>
+</div>
+
+--- JavaScript Switcher Function ---
+function initThemePalette() {
+  function applyPalette(paletteNum, persist = true) {
+    ['theme-1', 'theme-2', 'theme-3', 'theme-4', 'theme-5', 'theme-6'].forEach((c, idx) => {
+      if (String(idx + 1) === String(paletteNum)) {
+        document.body.classList.add(c);
+      } else {
+        document.body.classList.remove(c);
+      }
+    });
+    if (persist) localStorage.setItem('portfolio-theme-palette', String(paletteNum));
+  }
+
+  document.querySelectorAll('.theme-btn-option').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      applyPalette(btn.dataset.themeTarget, true);
+    });
+  });
+
+  const saved = localStorage.getItem('portfolio-theme-palette');
+  if (saved) applyPalette(saved, false);
+}
