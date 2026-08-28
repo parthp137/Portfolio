@@ -232,6 +232,59 @@ if (form) {
 }
 
 // ============================================
+// DYNAMIC HERO TYPEWRITER
+// ============================================
+function initTypewriter() {
+  const target = document.getElementById('typewriter-role');
+  if (!target) return;
+
+  const roles = [
+    'Full Stack Web Developer',
+    'AI & ML Solutions Builder',
+    'FastAPI & React Architect',
+    'Techathon 3.0 Winner'
+  ];
+
+  let roleIdx = 0;
+  let charIdx = roles[0].length;
+  let isDeleting = true;
+  let delay = 2500;
+
+  function type() {
+    const currentRole = roles[roleIdx];
+
+    if (isDeleting) {
+      target.textContent = currentRole.substring(0, charIdx - 1);
+      charIdx--;
+      delay = 35;
+    } else {
+      target.textContent = currentRole.substring(0, charIdx + 1);
+      charIdx++;
+      delay = 70;
+    }
+
+    if (!isDeleting && charIdx === currentRole.length) {
+      delay = 2400; // Pause on full text
+      isDeleting = true;
+    } else if (isDeleting && charIdx === 0) {
+      isDeleting = false;
+      roleIdx = (roleIdx + 1) % roles.length;
+      delay = 350; // Pause before typing next
+    }
+
+    setTimeout(type, delay);
+  }
+
+  setTimeout(type, delay);
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initTypewriter);
+} else {
+  initTypewriter();
+}
+
+// ============================================
 // BACK TO TOP
 // ============================================
 const backToTopBtn = document.getElementById('back-to-top');
