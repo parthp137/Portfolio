@@ -278,12 +278,6 @@ function initTypewriter() {
   setTimeout(type, delay);
 }
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initTypewriter);
-} else {
-  initTypewriter();
-}
-
 // ============================================
 // BACK TO TOP
 // ============================================
@@ -308,6 +302,15 @@ if (backToTopBtn) {
 const yearEl = document.getElementById('current-year');
 if (yearEl) {
   yearEl.textContent = new Date().getFullYear();
+}
+
+// Initialize typewriter when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    initTypewriter();
+  });
+} else {
+  initTypewriter();
 }
 
 // ============================================

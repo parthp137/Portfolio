@@ -540,6 +540,28 @@ body.light-theme .navbar.scrolled {
   font-size: 24px;
   font-weight: 500;
   color: var(--accent);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 36px;
+}
+
+.typewriter-text {
+  display: inline-block;
+  color: var(--accent);
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  color: var(--accent);
+  font-weight: 300;
+  margin-left: 2px;
+  animation: blinkCursor 0.8s infinite;
+}
+
+@keyframes blinkCursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 .hero-description {
@@ -548,6 +570,66 @@ body.light-theme .navbar.scrolled {
   max-width: 520px;
   font-size: 16px;
   line-height: 1.7;
+}
+
+/* HERO STATS */
+.hero-stats {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  max-width: 540px;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 14px var(--shadow);
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), #00d4ff);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-hover);
+  box-shadow: 0 8px 20px var(--accent-glow);
+}
+
+.stat-card:hover::before {
+  opacity: 1;
+}
+
+.stat-num {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.stat-txt {
+  margin-top: 4px;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--text-muted);
+  line-height: 1.35;
 }
 
 /* BUTTONS */
@@ -805,6 +887,29 @@ body.light-theme .navbar.scrolled {
   flex: 1;
 }
 
+.project-header {
+  margin-bottom: 12px;
+}
+
+.project-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: var(--accent-subtle);
+  color: var(--accent);
+  border: 1px solid var(--accent-border);
+}
+
+.project-badge i {
+  font-size: 11px;
+}
+
 .project-content h3 {
   font-size: 22px;
   font-weight: 600;
@@ -854,6 +959,54 @@ body.light-theme .navbar.scrolled {
 
 .tag:hover {
   background: var(--accent-subtle-hover);
+}
+
+.project-actions {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-project {
+  flex: 1;
+  padding: 9px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  transition: all 0.25s ease;
+}
+
+.btn-project.primary {
+  background: var(--accent);
+  color: var(--btn-primary-color);
+  box-shadow: 0 4px 12px var(--accent-glow);
+}
+
+.btn-project.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px var(--accent-glow);
+  filter: brightness(1.08);
+}
+
+.btn-project.secondary {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.btn-project.secondary:hover {
+  background: var(--accent-subtle);
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
 }
 
 /* ==========================================================================
@@ -1173,14 +1326,22 @@ body.light-theme .graph-tooltip {
 .skill-items span {
   background: var(--accent-subtle);
   color: var(--text-primary);
-  padding: 9px 16px;
+  padding: 8px 14px;
   border-radius: 10px;
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 500;
   border: 1px solid var(--accent-border);
   transition: all 0.25s ease;
   cursor: default;
   box-shadow: 0 2px 5px var(--shadow);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.skill-items span i {
+  font-size: 16px;
+  transition: transform 0.2s ease;
 }
 
 .skill-items span:hover {
@@ -1189,6 +1350,10 @@ body.light-theme .graph-tooltip {
   color: var(--accent);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px var(--accent-glow);
+}
+
+.skill-items span:hover i {
+  transform: scale(1.15);
 }
 
 /* ==========================================================================
@@ -1619,6 +1784,55 @@ button:focus-visible {
 }
 
 /* ==========================================================================
+   BACK TO TOP FLOATING BUTTON
+   ========================================================================== */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--accent-border);
+  color: var(--accent);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px) scale(0.9);
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.25s ease,
+              box-shadow 0.25s ease,
+              border-color 0.25s ease;
+  box-shadow: 0 6px 20px var(--shadow);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.back-to-top:hover {
+  background: var(--accent);
+  color: var(--btn-primary-color);
+  transform: translateY(-3px) scale(1.06);
+  box-shadow: 0 8px 24px var(--accent-glow);
+  border-color: var(--accent);
+}
+
+.back-to-top:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+/* ==========================================================================
    SCROLL REVEAL ANIMATIONS
    ========================================================================== */
 
@@ -1739,6 +1953,11 @@ button:focus-visible {
     font-size: 48px;
   }
 
+  .hero-stats {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
   .hero-card {
     width: 280px;
     height: 280px;
@@ -1753,6 +1972,14 @@ button:focus-visible {
   .btn-resume {
     width: 100%;
     justify-content: center;
+  }
+
+  .project-actions {
+    flex-direction: column;
+  }
+
+  .btn-project {
+    width: 100%;
   }
 
   .skill-category {
@@ -1818,6 +2045,14 @@ button:focus-visible {
 
   .contact-card {
     padding: 24px 20px;
+  }
+
+  .back-to-top {
+    bottom: 20px;
+    right: 20px;
+    width: 42px;
+    height: 42px;
+    font-size: 14px;
   }
 }
 
