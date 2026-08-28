@@ -295,7 +295,7 @@ if (backToTopBtn) {
     } else {
       backToTopBtn.classList.remove('visible');
     }
-  });
+  }, { passive: true });
 
   backToTopBtn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
