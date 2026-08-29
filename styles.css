@@ -879,164 +879,191 @@ body.light-theme .glass {
 }
 
 /* ==========================================================================
-   PROJECTS SECTION
+   PROJECTS SECTION (ishann-vaidya.github.io style)
    ========================================================================== */
 
 .projects {
   background: var(--bg-tertiary);
+  position: relative;
 }
 
-.project-grid {
-  margin-top: 48px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 28px;
+.section__head {
+  max-width: 780px;
+  margin-bottom: 2rem;
 }
 
-.project-card {
-  background: var(--bg-card);
-  border-radius: 20px;
+.projects__list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 36px;
+}
+
+.projects__card {
+  padding: clamp(1.4rem, 3vw, 2rem);
+  position: relative;
   overflow: hidden;
-  border: 1px solid var(--border-color);
-  box-shadow: var(--card-shadow);
+}
+
+.projects__card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.projects__card:hover::before {
+  opacity: 1;
+}
+
+.projects__card-top {
   display: flex;
-  flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
 }
 
-.project-card:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--card-shadow-hover);
-  border-color: var(--border-hover);
-}
-
-.project-content {
-  padding: 26px 28px;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.project-header {
-  margin-bottom: 12px;
-}
-
-.project-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11.5px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  padding: 4px 10px;
-  border-radius: 6px;
-  background: var(--accent-subtle);
-  color: var(--accent);
-  border: 1px solid var(--accent-border);
-}
-
-.project-badge i {
-  font-size: 11px;
-}
-
-.project-content h3 {
-  font-size: 22px;
+.projects__title {
+  font-size: clamp(1.35rem, 2.2vw, 1.7rem);
   font-weight: 600;
   color: var(--text-primary);
+  letter-spacing: -0.3px;
+  margin-bottom: 0.35rem;
 }
 
-.project-meta {
-  font-size: 13.5px;
+.projects__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.88rem;
   color: var(--text-muted);
-  margin-top: 4px;
   font-weight: 500;
 }
 
-.project-text {
-  margin-top: 16px;
-  font-size: 14.5px;
-  color: var(--text-secondary);
-  padding-left: 20px;
+.projects__dot {
+  width: 4px;
+  height: 4px;
+  background: var(--accent);
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+.projects__badge-text {
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.projects__links {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.projects__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  background: var(--accent-subtle);
+  border: 1px solid var(--accent-border);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.22s ease;
+}
+
+.projects__link:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-subtle-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px var(--accent-glow);
+}
+
+.projects__link[aria-disabled="true"] {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.projects__link-arrow {
+  opacity: 0.75;
+  font-size: 0.85rem;
+  transition: transform 0.2s ease;
+}
+
+.projects__link:hover .projects__link-arrow {
+  transform: translate(2px, -2px);
+  opacity: 1;
+}
+
+.projects__body {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.35rem;
+  margin-bottom: 1.35rem;
+  padding: 1.2rem 0;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.projects__block {
+  display: flex;
+  flex-direction: column;
+}
+
+.projects__label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--accent);
+  margin-bottom: 0.45rem;
+}
+
+.projects__block p {
+  font-size: 0.92rem;
   line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
 }
 
-.project-text li {
-  margin-bottom: 8px;
-}
-
-.project-text li:last-child {
-  margin-bottom: 0;
-}
-
-.project-tags {
-  margin-top: 22px;
+.projects__stack {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 0.5rem;
 }
 
-.tag {
-  font-size: 12.5px;
+.projects__pill {
+  font-size: 0.78rem;
   font-weight: 500;
-  padding: 5px 12px;
-  border-radius: 999px;
-  background: var(--accent-subtle);
-  color: var(--accent);
-  border: 1px solid var(--accent-border);
+  padding: 0.35rem 0.75rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
   transition: all 0.2s ease;
 }
 
-.tag:hover {
-  background: var(--accent-subtle-hover);
+body.light-theme .projects__pill {
+  background: rgba(15, 23, 42, 0.04);
+  color: var(--text-secondary);
 }
 
-.project-actions {
-  margin-top: 24px;
-  padding-top: 18px;
-  border-top: 1px solid var(--border-color);
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.btn-project {
-  flex: 1;
-  padding: 9px 14px;
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: 600;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  transition: all 0.25s ease;
-}
-
-.btn-project.primary {
-  background: var(--accent);
-  color: var(--btn-primary-color);
-  box-shadow: 0 4px 12px var(--accent-glow);
-}
-
-.btn-project.primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px var(--accent-glow);
-  filter: brightness(1.08);
-}
-
-.btn-project.secondary {
-  background: transparent;
-  color: var(--text-primary);
-  border: 1px solid var(--border-color);
-}
-
-.btn-project.secondary:hover {
+.projects__pill:hover {
   background: var(--accent-subtle);
-  border-color: var(--accent);
+  border-color: var(--accent-border);
   color: var(--accent);
-  transform: translateY(-2px);
 }
 
 /* ==========================================================================
