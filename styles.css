@@ -853,6 +853,32 @@ body.light-theme .navbar.scrolled {
 }
 
 /* ==========================================================================
+   GLASS UTILITY (ishann-vaidya.github.io style)
+   ========================================================================== */
+
+.glass {
+  background: rgba(17, 18, 22, 0.72);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease, background 0.28s ease;
+}
+
+body.light-theme .glass {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+.glass:hover {
+  border-color: var(--accent-border);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), 0 0 25px var(--accent-glow);
+  transform: translateY(-3px);
+}
+
+/* ==========================================================================
    PROJECTS SECTION
    ========================================================================== */
 
