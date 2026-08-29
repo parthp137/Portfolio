@@ -276,132 +276,174 @@
     <!-- PROJECTS -->
     <section id="projects" class="section projects">
       <div class="container fade-up">
-        <p class="mini-title">
-          <span class="shiny-text">
-            <span class="shiny-text-base">PORTFOLIO</span>
-            <span class="shiny-text-overlay" aria-hidden="true">PORTFOLIO</span>
-          </span>
-        </p>
-        <h2>
-          <span class="shiny-text">
-            <span class="shiny-text-base">Projects</span>
-            <span class="shiny-text-overlay" aria-hidden="true">Projects</span>
-          </span>
-        </h2>
-        <p class="section-description">
-          A collection of projects that showcase my skills and passion.
-        </p>
+        <div class="section__head">
+          <p class="mini-title">
+            <span class="shiny-text">
+              <span class="shiny-text-base">PROJECTS</span>
+              <span class="shiny-text-overlay" aria-hidden="true">PROJECTS</span>
+            </span>
+          </p>
+          <h2>
+            <span class="shiny-text">
+              <span class="shiny-text-base">Featured Projects</span>
+              <span class="shiny-text-overlay" aria-hidden="true">Featured Projects</span>
+            </span>
+          </h2>
+          <p class="section-description">
+            Problem-first builds with clear technical boundaries, scalable architectures, and links to source.
+          </p>
+        </div>
 
-        <div class="project-grid">
-          <!-- Project 1 -->
-          <article class="project-card fade-up">
-            <div class="project-content">
-              <div class="project-header">
-                <span class="project-badge"><i class="fas fa-layer-group"></i> Full Stack &amp; AI</span>
+        <div class="projects__list">
+          <!-- Project 1: SplitsVilla -->
+          <article class="projects__card glass fade-up">
+            <div class="projects__card-top">
+              <div>
+                <h3 class="projects__title">
+                  <span class="shiny-text">
+                    <span class="shiny-text-base">SplitsVilla</span>
+                    <span class="shiny-text-overlay" aria-hidden="true">SplitsVilla</span>
+                  </span>
+                </h3>
+                <p class="projects__meta">
+                  <span>2026</span>
+                  <span class="projects__dot" aria-hidden="true"></span>
+                  <span class="projects__badge-text">Group Travel &amp; AI Expense Hub</span>
+                </p>
               </div>
-              <h3>
-                <span class="shiny-text">
-                  <span class="shiny-text-base">SplitsVilla</span>
-                  <span class="shiny-text-overlay" aria-hidden="true">SplitsVilla</span>
-                </span>
-              </h3>
-              <p class="project-meta">Group Travel & Expense Management Platform • 2026</p>
-              <ul class="project-text">
-                <li>Architected full-stack group travel platform uniting property booking, collaborative trip planning,
-                  and multi-currency expense splitting.</li>
-                <li>Engineered real-time collaborative voting and instant trip synchronization using Socket.io
-                  WebSockets.</li>
-                <li>Implemented an intelligent debt settlement algorithm to minimize inter-member transactions and
-                  automate balance reconciliation.</li>
-                <li>Integrated Anthropic Claude API for AI-driven budget estimation and personalized stay
-                  recommendations.</li>
-              </ul>
-              <div class="project-tags">
-                <span class="tag">React</span>
-                <span class="tag">TypeScript</span>
-                <span class="tag">Node.js</span>
-                <span class="tag">MongoDB</span>
-                <span class="tag">Socket.io</span>
-                <span class="tag">Claude API</span>
-              </div>
-              <div class="project-actions">
-                <a href="https://github.com/parthp137/SplitsVilla" target="_blank" rel="noopener noreferrer"
-                  class="btn-project secondary">
-                  <i class="fab fa-github"></i> View Code
+              <div class="projects__links">
+                <a href="https://github.com/parthp137/SplitsVilla" target="_blank" rel="noopener noreferrer" class="projects__link">
+                  <i class="fab fa-github"></i> GitHub <span class="projects__link-arrow" aria-hidden="true">↗</span>
                 </a>
-                <a href=" " class="btn-project primary">
-                  <i class="fas fa-arrow-up-right-from-square"></i> Live Demo
+                <a href="#" class="projects__link" aria-disabled="true" onclick="event.preventDefault()">
+                  <i class="fas fa-arrow-up-right-from-square"></i> Live Demo <span class="projects__link-arrow" aria-hidden="true">↗</span>
                 </a>
               </div>
             </div>
-          </article>
 
-          <!-- Project 2 -->
-          <article class="project-card fade-up">
-            <div class="project-content">
-              <div class="project-header">
-                <span class="project-badge"><i class="fas fa-heart-pulse"></i> FastAPI &amp; LLM</span>
+            <div class="projects__body">
+              <div class="projects__block">
+                <span class="projects__label">Problem</span>
+                <p>Coordinating group stays and multi-currency expense splitting across disconnected tools leads to messy balance debts and fragmented travel plans.</p>
               </div>
-              <h3>CareSync</h3>
-              <p class="project-meta">Patient-Centric Healthcare Platform • 2026</p>
-              <ul class="project-text">
-                <li>Built a FastAPI backend for symptom classification, urgency triage, and specialty-based care
-                  recommendations.</li>
-                <li>Integrated LLM inference with rule-based emergency overrides and deterministic fallback handling.
-                </li>
-                <li>Implemented severity-driven recommendation engine with weighted ranking and structured JSON
-                  enrichment.</li>
-                <li>Designed modular architecture with conversation persistence and geolocation fallback logic.</li>
-              </ul>
-              <div class="project-tags">
-                <span class="tag">FastAPI</span>
-                <span class="tag">SQLAlchemy</span>
-                <span class="tag">LLM APIs</span>
-                <span class="tag">Pandas</span>
+              <div class="projects__block">
+                <span class="projects__label">Solution</span>
+                <p>Engineered full-stack group travel hub featuring real-time Socket.io collaborative voting, automated debt minimization algorithms, and Claude API for budget estimation.</p>
               </div>
-              <div class="project-actions">
-                <a href="https://github.com/parthp137/CareSync" target="_blank" rel="noopener noreferrer"
-                  class="btn-project secondary">
-                  <i class="fab fa-github"></i> View Code
-                </a>
-                <a href=" " class="btn-project primary">
-                  <i class="fas fa-arrow-up-right-from-square"></i> Live Demo
-                </a>
+              <div class="projects__block">
+                <span class="projects__label">Impact</span>
+                <p>Dramatically reduces inter-member transactions with automated reconciliation, instant room-level booking sync, and AI-driven personalized recommendations.</p>
               </div>
+            </div>
+
+            <div class="projects__stack">
+              <span class="projects__pill">React</span>
+              <span class="projects__pill">TypeScript</span>
+              <span class="projects__pill">Node.js</span>
+              <span class="projects__pill">MongoDB</span>
+              <span class="projects__pill">Socket.io</span>
+              <span class="projects__pill">Claude API</span>
             </div>
           </article>
 
-          <!-- Project 3 -->
-          <article class="project-card fade-up">
-            <div class="project-content">
-              <div class="project-header">
-                <span class="project-badge"><i class="fas fa-shield-halved"></i> ML &amp; Security</span>
+          <!-- Project 2: CareSync -->
+          <article class="projects__card glass fade-up">
+            <div class="projects__card-top">
+              <div>
+                <h3 class="projects__title">
+                  <span class="shiny-text">
+                    <span class="shiny-text-base">CareSync</span>
+                    <span class="shiny-text-overlay" aria-hidden="true">CareSync</span>
+                  </span>
+                </h3>
+                <p class="projects__meta">
+                  <span>2026</span>
+                  <span class="projects__dot" aria-hidden="true"></span>
+                  <span class="projects__badge-text">Healthcare AI &amp; Triage Engine</span>
+                </p>
               </div>
-              <h3>LiveProof</h3>
-              <p class="project-meta">ML-Based Human Presence Verification • 2026</p>
-              <ul class="project-text">
-                <li>Developed real-time behavioral verification system distinguishing human vs synthetic interactions
-                  using 7 extracted features.</li>
-                <li>Trained Logistic Regression model with explainable outputs including feature importance and
-                  confidence scoring.</li>
-                <li>Engineered frontend behavioral signal capture using browser APIs.</li>
-                <li>Implemented privacy-first, session-scoped architecture with rule-based fallback.</li>
-              </ul>
-              <div class="project-tags">
-                <span class="tag">Python</span>
-                <span class="tag">Flask</span>
-                <span class="tag">scikit-learn</span>
-                <span class="tag">JavaScript</span>
-              </div>
-              <div class="project-actions">
-                <a href="https://github.com/parthp137/Live-Proof" target="_blank" rel="noopener noreferrer"
-                  class="btn-project secondary">
-                  <i class="fab fa-github"></i> View Code
+              <div class="projects__links">
+                <a href="https://github.com/parthp137/CareSync" target="_blank" rel="noopener noreferrer" class="projects__link">
+                  <i class="fab fa-github"></i> GitHub <span class="projects__link-arrow" aria-hidden="true">↗</span>
                 </a>
-                <a href=" " class="btn-project primary">
-                  <i class="fas fa-arrow-up-right-from-square"></i> Live Demo
+                <a href="#" class="projects__link" aria-disabled="true" onclick="event.preventDefault()">
+                  <i class="fas fa-arrow-up-right-from-square"></i> Live Demo <span class="projects__link-arrow" aria-hidden="true">↗</span>
                 </a>
               </div>
+            </div>
+
+            <div class="projects__body">
+              <div class="projects__block">
+                <span class="projects__label">Problem</span>
+                <p>Patients face difficulty determining emergency urgency, while healthcare facilities face overcrowding from non-critical manual walk-ins.</p>
+              </div>
+              <div class="projects__block">
+                <span class="projects__label">Solution</span>
+                <p>FastAPI triage backend integrating LLM inferences with rule-based safety overrides, weighted urgency ranking, and fallback geolocation resolution.</p>
+              </div>
+              <div class="projects__block">
+                <span class="projects__label">Impact</span>
+                <p>Delivers deterministic safety fail-safes and structured diagnostic recommendations; awarded 1st Place at InnovateYou Techathon 3.0.</p>
+              </div>
+            </div>
+
+            <div class="projects__stack">
+              <span class="projects__pill">FastAPI</span>
+              <span class="projects__pill">Python</span>
+              <span class="projects__pill">SQLAlchemy</span>
+              <span class="projects__pill">LLM APIs</span>
+              <span class="projects__pill">Pandas</span>
+              <span class="projects__pill">SQLite</span>
+            </div>
+          </article>
+
+          <!-- Project 3: LiveProof -->
+          <article class="projects__card glass fade-up">
+            <div class="projects__card-top">
+              <div>
+                <h3 class="projects__title">
+                  <span class="shiny-text">
+                    <span class="shiny-text-base">LiveProof</span>
+                    <span class="shiny-text-overlay" aria-hidden="true">LiveProof</span>
+                  </span>
+                </h3>
+                <p class="projects__meta">
+                  <span>2026</span>
+                  <span class="projects__dot" aria-hidden="true"></span>
+                  <span class="projects__badge-text">ML Human Verification</span>
+                </p>
+              </div>
+              <div class="projects__links">
+                <a href="https://github.com/parthp137/Live-Proof" target="_blank" rel="noopener noreferrer" class="projects__link">
+                  <i class="fab fa-github"></i> GitHub <span class="projects__link-arrow" aria-hidden="true">↗</span>
+                </a>
+                <a href="#" class="projects__link" aria-disabled="true" onclick="event.preventDefault()">
+                  <i class="fas fa-arrow-up-right-from-square"></i> Live Demo <span class="projects__link-arrow" aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="projects__body">
+              <div class="projects__block">
+                <span class="projects__label">Problem</span>
+                <p>Traditional image CAPTCHAs frustrate legitimate users while automated scripts frequently bypass simple bot detection filters.</p>
+              </div>
+              <div class="projects__block">
+                <span class="projects__label">Solution</span>
+                <p>Trained Logistic Regression behavioral verification model utilizing 7 client-side telemetry signals with explainable confidence outputs.</p>
+              </div>
+              <div class="projects__block">
+                <span class="projects__label">Impact</span>
+                <p>Zero-friction user experience with session-scoped privacy-first architecture and deterministic rule fallback against synthetic bot attacks.</p>
+              </div>
+            </div>
+
+            <div class="projects__stack">
+              <span class="projects__pill">Python</span>
+              <span class="projects__pill">Flask</span>
+              <span class="projects__pill">scikit-learn</span>
+              <span class="projects__pill">JavaScript</span>
+              <span class="projects__pill">Browser APIs</span>
             </div>
           </article>
         </div>
