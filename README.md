@@ -7,18 +7,19 @@ This project is a front-end portfolio website designed to showcase my skills, pr
 
 ## Features
 
-### Theme System
+### Theme & Palette System
+- **Dual-Theme Palette Switcher:** Switch between curated color palettes (Theme 1: Cyber Emerald & Theme 4: Obsidian Coral)
 - **Dark/Light Mode Toggle:** Switch between dark and light themes with a single click
 - **System Preference Detection:** Automatically syncs with the user's OS color scheme (`prefers-color-scheme`) on first visit
-- **LocalStorage Persistence:** Theme preference is saved and restored across sessions
-- **Smooth Transitions:** All color changes animate smoothly between themes
-- **Dynamic Icons:** Theme toggle button updates icon (moon/sun) based on active theme
+- **LocalStorage Persistence:** Theme and palette preferences are saved and restored across sessions (`portfolio-theme-palette` and `theme`)
+- **Smooth Transitions:** All color changes animate smoothly between themes and palettes
+- **Dynamic Icons & Swatches:** Real-time visual feedback with two-tone swatch previews and active checkmarks
 
 ### Navigation System
-- **Scroll Progress Indicator:** Top gradient progress bar dynamically tracking reading depth
+- **Scroll Progress Indicator:** Top gradient progress bar dynamically tracking reading depth with theme-adaptive colors
 - **Dynamic Elevation:** Glassmorphism elevation and blur on scroll (`.scrolled`)
 - **Pill Navigation:** Modern floating pill link container on desktop with active state highlight
-- **Mobile Navigation Drawer:** Responsive slide-in drawer with animated hamburger morphing icon
+- **Mobile Navigation Drawer:** Responsive slide-in drawer with animated hamburger morphing icon and theme selector
 - **Quick Action CTA:** Integrated header CTA button for instant conversion
 - **Smooth Scrolling:** Offset-corrected navigation between sections
 - **Active Link Highlighting:** Scroll spy tracking active sections in real time
@@ -29,12 +30,14 @@ This project is a front-end portfolio website designed to showcase my skills, pr
 - **About Me:** Education and professional experience timeline with structured cards
 - **Projects:** Full-stack and ML projects (CareSync, LiveProof) with detailed bullet points and tech stacks
 - **Skills:** 7 categorized skill sections (Languages, Frontend, Backend, Machine Learning, Databases, Tools, Concepts) with badge styling
+- **Activity:** GitHub activity contribution graph heatmap with theme-matching dynamic colors
 - **Achievements:** Competition results and recognitions with winner/finalist indicators
 - **Certifications:** Card layout with direct certificate preview/download buttons  
 - **Contact:** Professional contact form with form validation and feedback alert
 
 ### Functionality
-- Theme toggle with localStorage persistence
+- Dual theme switching and Dark/Light toggle with localStorage persistence
+- Dynamic GitHub contribution heatmap loaded via live API and cached fallback
 - Scroll-based active section detection
 - Smooth navigation transitions with offset correction
 - Contact form validation and submission feedback
@@ -42,23 +45,20 @@ This project is a front-end portfolio website designed to showcase my skills, pr
 
 ## Tech Stack
 - **Frontend:** HTML5, Vanilla CSS3, JavaScript (ES6+)  
-- **Storage:** LocalStorage API for theme persistence  
+- **Storage:** LocalStorage API for theme & palette persistence  
 - **Libraries & Fonts:** Font Awesome 6.5.0, Google Fonts (Inter)  
 - **Deployment:** GitHub Pages  
 - **Version Control:** Git & GitHub
 
 ## Design Overview
 
-### Dark Theme (Default)
-- Deep sleek background (`#0c0d10`, `#17181c`)
-- Vibrant emerald accent (`#37ff8b`)
-- High contrast and dark aesthetic
+### Theme 1: Cyber Emerald (Default)
+- **Dark Mode:** Deep sleek background (`#0c0d10`, `#17181c`), vibrant emerald accent (`#37ff8b`)
+- **Light Mode:** Clean white background (`#ffffff`, `#f8fafc`), crisp emerald accent (`#059669`)
 
-### Light Theme
-- Clean white background (`#ffffff`, `#f8f9fa`)
-- Crisp dark text (`#212529`)
-- High-contrast green accent (`#009e4d`)
-- Optimized for daytime readability and WCAG accessibility
+### Theme 4: Obsidian Coral
+- **Dark Mode:** Deep obsidian navy (`#0d1b2a`, `#17273d`), vibrant coral accent (`#ff5d5d`)
+- **Light Mode:** Platinum silver background (`#e0e1dd`, `#ffffff`), vivid coral accent (`#ff5d5d`)
 
 ## Project Structure
 ```
@@ -67,6 +67,8 @@ Portfolio/
 ├── index.html          # Main webpage with semantic markup & SEO tags
 ├── styles.css          # Design system, CSS variables & responsive layout
 ├── script.js           # Theme toggle, scroll animations & interactive logic
+├── themes_info.txt     # Theme palettes archive and variable definitions
+├── activity.json       # GitHub activity and contribution cache
 ├── images/             # Profile and asset images
 ├── certificates/       # Certificate & Resume PDFs
 └── README.md           # Project documentation
@@ -74,11 +76,11 @@ Portfolio/
 
 ## Key Implementation Details
 
-### Theme Toggle System
-- **CSS Variables:** Structured in `:root` and overridden in `body.light-theme`
-- **JavaScript Logic:** Event listener on theme toggle button, toggling `.light-theme` on `document.body`
-- **Persistence:** Saved in `localStorage` under key `'theme'` (`'dark'` / `'light'`)
-- **Icon Switching:** Toggles `fa-moon` and `fa-sun` icons
+### Theme & Palette System
+- **CSS Variables:** Structured design tokens for `theme-1` and `theme-4` with Dark and Light mode variants
+- **JavaScript Logic:** `applyPalette()` applies active palette classes to `document.body` and updates selector states
+- **Persistence:** Saved in `localStorage` under `portfolio-theme-palette` and `theme`
+- **Icon & Swatch Switching:** Toggles `fa-moon`/`fa-sun` and updates active palette checkmarks
 
 ### Scroll Animations
 - **Scroll Detection:** Window scroll event listener evaluating element bounding rectangles
