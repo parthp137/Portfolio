@@ -14,7 +14,8 @@ TABLE OF CONTENTS
 4. Theme 4 (Obsidian Navy, Denim & Coral Sunset)
 5. Theme 5 (Charcoal Slate & Crimson Ruby)
 6. Theme 6 (Arctic Teal & Frosted Glacier)
-7. HTML & JS Switcher Snippets (If you want to re-enable the palette switcher)
+7. Theme 7 (Royal Amethyst & Electric Violet)
+8. HTML & JS Switcher Snippets (Palette Switcher System)
 
 ================================================================================
 1. THEME 1: CYBER EMERALD (CURRENT ACTIVE DEFAULT)
@@ -560,62 +561,196 @@ body.theme-6 .achievement-card::before { background: linear-gradient(180deg, #5e
 
 
 ================================================================================
-7. HTML & JS SNIPPETS (TO RE-ENABLE THE PALETTE SWITCHER)
+7. THEME 7: ROYAL AMETHYST & ELECTRIC VIOLET
+================================================================================
+Palette Swatches:
+- Deep Midnight Violet: #0F0C1B (Dark BG)
+- Twilight Purple:      #1E1838
+- Electric Violet:      #A855F7 (Dark Accent)
+- Royal Amethyst:       #7C3AED (Light Accent)
+- Lavender Mist:        #FAF7FD (Light BG)
+
+--- CSS VARIABLES (THEME 7) ---
+
+/* Theme 7 Dark Mode */
+body.theme-7 {
+  --bg-primary: #0f0c1b;
+  --bg-secondary: #161228;
+  --bg-tertiary: #1e1838;
+  --bg-card: #1a1433;
+  --bg-card-gradient: linear-gradient(145deg, #231b42, #140f29);
+  --bg-card-hover: linear-gradient(145deg, #2e2354, #191333);
+  --bg-input: #1e1838;
+  --text-primary: #f5f3ff;
+  --text-secondary: #d8b4fe;
+  --text-muted: #9482b9;
+  --accent: #a855f7;
+  --accent-hover: #c084fc;
+  --accent-glow: rgba(168, 85, 247, 0.4);
+  --accent-subtle: rgba(168, 85, 247, 0.12);
+  --accent-subtle-hover: rgba(168, 85, 247, 0.22);
+  --accent-border: rgba(168, 85, 247, 0.28);
+  --border-color: rgba(216, 180, 254, 0.1);
+  --border-hover: rgba(168, 85, 247, 0.5);
+  --shadow: rgba(6, 4, 14, 0.7);
+  --card-shadow: 0 10px 30px rgba(6, 4, 14, 0.55);
+  --card-shadow-hover: 0 20px 45px rgba(168, 85, 247, 0.18), 0 10px 30px rgba(6, 4, 14, 0.65);
+  --navbar-bg: rgba(15, 12, 27, 0.88);
+  --hero-card-bg: #1a1433;
+  --hero-card-shadow: 0 30px 70px rgba(0, 0, 0, 0.85), 0 0 35px rgba(168, 85, 247, 0.25);
+  --hero-card-border: rgba(168, 85, 247, 0.45);
+  --hero-card-outline: rgba(124, 58, 237, 0.4);
+  --winner-bg: linear-gradient(135deg, rgba(168, 85, 247, 0.25), rgba(236, 72, 153, 0.25));
+  --winner-color: #c084fc;
+  --finalist-bg: linear-gradient(135deg, rgba(124, 58, 237, 0.35), rgba(168, 85, 247, 0.18));
+  --finalist-color: #e9d5ff;
+  --btn-primary-color: #0f0c1b;
+  --btn-primary-shadow: 0 12px 30px rgba(168, 85, 247, 0.35);
+  --btn-primary-shadow-hover: 0 16px 40px rgba(168, 85, 247, 0.52);
+  --input-focus-border: rgba(168, 85, 247, 0.75);
+  --input-focus-shadow: 0 0 0 3px rgba(168, 85, 247, 0.2);
+}
+
+/* Theme 7 Light Mode */
+body.theme-7.light-theme {
+  --bg-primary: #faf7fd;
+  --bg-secondary: #f1e8f9;
+  --bg-tertiary: #e8dcf5;
+  --bg-card: #ffffff;
+  --bg-card-gradient: linear-gradient(145deg, #ffffff, #f7f1fc);
+  --bg-card-hover: linear-gradient(145deg, #ffffff, #f0e4f9);
+  --bg-input: #ffffff;
+  --text-primary: #1e1035;
+  --text-secondary: #3b1d6b;
+  --text-muted: #776296;
+  --accent: #7c3aed;
+  --accent-hover: #6d28d9;
+  --accent-glow: rgba(124, 58, 237, 0.25);
+  --accent-subtle: rgba(124, 58, 237, 0.08);
+  --accent-subtle-hover: rgba(124, 58, 237, 0.15);
+  --accent-border: rgba(124, 58, 237, 0.25);
+  --border-color: rgba(30, 16, 53, 0.08);
+  --border-hover: rgba(124, 58, 237, 0.45);
+  --shadow: rgba(30, 16, 53, 0.06);
+  --card-shadow: 0 8px 24px -4px rgba(30, 16, 53, 0.08), 0 2px 6px -2px rgba(30, 16, 53, 0.04);
+  --card-shadow-hover: 0 20px 35px -8px rgba(124, 58, 237, 0.2), 0 4px 10px -2px rgba(30, 16, 53, 0.05);
+  --navbar-bg: rgba(250, 247, 253, 0.88);
+  --hero-card-bg: #e8dcf5;
+  --hero-card-shadow: 0 25px 50px -12px rgba(30, 16, 53, 0.2), 0 0 25px rgba(124, 58, 237, 0.18);
+  --hero-card-border: rgba(124, 58, 237, 0.4);
+  --hero-card-outline: rgba(168, 85, 247, 0.35);
+  --winner-bg: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(124, 58, 237, 0.1));
+  --winner-color: #7c3aed;
+  --finalist-bg: linear-gradient(135deg, rgba(124, 58, 237, 0.12), rgba(168, 85, 247, 0.15));
+  --finalist-color: #3b1d6b;
+  --btn-primary-color: #ffffff;
+  --btn-primary-shadow: 0 10px 25px -4px rgba(124, 58, 237, 0.35);
+  --btn-primary-shadow-hover: 0 16px 32px -4px rgba(124, 58, 237, 0.48);
+  --input-focus-border: var(--accent);
+  --input-focus-shadow: 0 0 0 3px rgba(124, 58, 237, 0.18);
+}
+
+/* Theme 7 Heatmap & Elements */
+body.theme-7 .level-0 { background-color: rgba(216, 180, 254, 0.07); border: 1px solid rgba(216, 180, 254, 0.05); }
+body.theme-7 .level-1 { background-color: #2e1065; }
+body.theme-7 .level-2 { background-color: #581c87; }
+body.theme-7 .level-3 { background-color: #7e22ce; }
+body.theme-7 .level-4 { background-color: #a855f7; box-shadow: 0 0 6px rgba(168, 85, 247, 0.5); }
+body.theme-7.light-theme .level-0 { background-color: #e8dcf5; border: 1px solid rgba(30, 16, 53, 0.06); }
+body.theme-7.light-theme .level-1 { background-color: #d8b4fe; }
+body.theme-7.light-theme .level-2 { background-color: #a855f7; }
+body.theme-7.light-theme .level-3 { background-color: #7c3aed; }
+body.theme-7.light-theme .level-4 { background-color: #4c1d95; box-shadow: 0 0 4px rgba(76, 29, 149, 0.35); }
+body.theme-7 .scroll-progress-bar { background: linear-gradient(90deg, #a855f7, #ec4899); box-shadow: 0 0 12px rgba(168, 85, 247, 0.45); }
+body.theme-7 .skill-category::before { background: linear-gradient(90deg, #a855f7, #ec4899); }
+body.theme-7 .achievement-card::before { background: linear-gradient(180deg, #a855f7, #7c3aed); }
+body.theme-7.light-theme .scroll-progress-bar { background: linear-gradient(90deg, #7c3aed, #a855f7); box-shadow: 0 0 12px rgba(124, 58, 237, 0.35); }
+body.theme-7.light-theme .skill-category::before { background: linear-gradient(90deg, #7c3aed, #a855f7); }
+body.theme-7.light-theme .achievement-card::before { background: linear-gradient(180deg, #7c3aed, #a855f7); }
+
+
+================================================================================
+8. HTML & JS SNIPPETS (PALETTE SWITCHER SYSTEM)
 ================================================================================
 
---- HTML (Navbar Switcher) ---
-<div class="theme-switcher-nav" aria-label="Theme Palette Switcher">
-  <button class="theme-btn-option is-active" data-theme-target="1" title="Theme 1: Cyber Emerald">
-    <span class="theme-swatch-dot theme-swatch-1"></span>
+--- HTML (Dropdown & Mobile Switcher) ---
+<!-- Navbar Palette Dropdown -->
+<div class="palette-dropdown-wrapper">
+  <button id="palette-toggle" class="palette-toggle" aria-label="Choose Theme Palette" title="Choose Theme Palette" aria-haspopup="true" aria-expanded="false">
+    <i class="fas fa-palette"></i>
   </button>
-  <button class="theme-btn-option" data-theme-target="2" title="Theme 2: Velvet Burgundy & Caramel">
-    <span class="theme-swatch-dot theme-swatch-2"></span>
-  </button>
-  <button class="theme-btn-option" data-theme-target="3" title="Theme 3: Midnight Navy & Terracotta">
-    <span class="theme-swatch-dot theme-swatch-3"></span>
-  </button>
-  <button class="theme-btn-option" data-theme-target="4" title="Theme 4: Obsidian Navy & Coral Sunset">
-    <span class="theme-swatch-dot theme-swatch-4"></span>
-  </button>
-  <button class="theme-btn-option" data-theme-target="5" title="Theme 5: Charcoal Slate & Crimson Ruby">
-    <span class="theme-swatch-dot theme-swatch-5"></span>
-  </button>
-  <button class="theme-btn-option" data-theme-target="6" title="Theme 6: Arctic Teal & Frosted Glacier">
-    <span class="theme-swatch-dot theme-swatch-6"></span>
-  </button>
-</div>
-
---- HTML (Floating Theme Bar) ---
-<div class="floating-theme-bar" aria-label="Theme Selector">
-  <span class="floating-theme-label"><i class="fas fa-palette"></i> Palette:</span>
-  <button class="theme-btn-option is-active" data-theme-target="1">T1 (Emerald)</button>
-  <button class="theme-btn-option" data-theme-target="2">T2 (Burgundy)</button>
-  <button class="theme-btn-option" data-theme-target="3">T3 (Terracotta)</button>
-  <button class="theme-btn-option" data-theme-target="4">T4 (Coral)</button>
-  <button class="theme-btn-option" data-theme-target="5">T5 (Ruby)</button>
-  <button class="theme-btn-option" data-theme-target="6">T6 (Arctic Teal)</button>
+  <div class="palette-dropdown" id="palette-dropdown" role="menu" aria-label="Theme Palettes">
+    <div class="palette-dropdown-header">
+      <i class="fas fa-swatchbook"></i> Color Palettes
+    </div>
+    <div class="palette-options">
+      <button class="palette-option active" data-theme-target="1" role="menuitem">
+        <span class="palette-swatches"><span style="background:#0c0d10"></span><span style="background:#37ff8b"></span></span>
+        <span class="palette-name">1. Cyber Emerald</span>
+        <i class="fas fa-check palette-check"></i>
+      </button>
+      <button class="palette-option" data-theme-target="2" role="menuitem">
+        <span class="palette-swatches"><span style="background:#241018"></span><span style="background:#ba9e7e"></span></span>
+        <span class="palette-name">2. Velvet Burgundy</span>
+        <i class="fas fa-check palette-check"></i>
+      </button>
+      <button class="palette-option" data-theme-target="3" role="menuitem">
+        <span class="palette-swatches"><span style="background:#0b1320"></span><span style="background:#b46a55"></span></span>
+        <span class="palette-name">3. Midnight Navy</span>
+        <i class="fas fa-check palette-check"></i>
+      </button>
+      <button class="palette-option" data-theme-target="4" role="menuitem">
+        <span class="palette-swatches"><span style="background:#0d1b2a"></span><span style="background:#ff5d5d"></span></span>
+        <span class="palette-name">4. Obsidian Coral</span>
+        <i class="fas fa-check palette-check"></i>
+      </button>
+      <button class="palette-option" data-theme-target="5" role="menuitem">
+        <span class="palette-swatches"><span style="background:#1a2433"></span><span style="background:#e11d48"></span></span>
+        <span class="palette-name">5. Charcoal Ruby</span>
+        <i class="fas fa-check palette-check"></i>
+      </button>
+      <button class="palette-option" data-theme-target="6" role="menuitem">
+        <span class="palette-swatches"><span style="background:#0f1f2b"></span><span style="background:#5ea3a3"></span></span>
+        <span class="palette-name">6. Arctic Teal</span>
+        <i class="fas fa-check palette-check"></i>
+      </button>
+      <button class="palette-option" data-theme-target="7" role="menuitem">
+        <span class="palette-swatches"><span style="background:#0f0c1b"></span><span style="background:#a855f7"></span></span>
+        <span class="palette-name">7. Royal Amethyst</span>
+        <i class="fas fa-check palette-check"></i>
+      </button>
+    </div>
+  </div>
 </div>
 
 --- JavaScript Switcher Function ---
 function initThemePalette() {
+  const paletteClasses = ['theme-1', 'theme-2', 'theme-3', 'theme-4', 'theme-5', 'theme-6', 'theme-7'];
+  
   function applyPalette(paletteNum, persist = true) {
-    ['theme-1', 'theme-2', 'theme-3', 'theme-4', 'theme-5', 'theme-6'].forEach((c, idx) => {
+    paletteClasses.forEach((c, idx) => {
       if (String(idx + 1) === String(paletteNum)) {
         document.body.classList.add(c);
       } else {
         document.body.classList.remove(c);
       }
     });
+    
+    document.querySelectorAll('[data-theme-target]').forEach(btn => {
+      btn.classList.toggle('active', String(btn.dataset.themeTarget) === String(paletteNum));
+    });
+
     if (persist) localStorage.setItem('portfolio-theme-palette', String(paletteNum));
   }
 
-  document.querySelectorAll('.theme-btn-option').forEach(btn => {
+  document.querySelectorAll('[data-theme-target]').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       applyPalette(btn.dataset.themeTarget, true);
     });
   });
 
-  const saved = localStorage.getItem('portfolio-theme-palette');
-  if (saved) applyPalette(saved, false);
+  const saved = localStorage.getItem('portfolio-theme-palette') || '1';
+  applyPalette(saved, false);
 }
+
