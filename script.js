@@ -1,11 +1,75 @@
 // ============================================
-// THEME TOGGLE (with system preference fallback)
-// Default Theme: Theme 1 (Cyber Emerald)
+// THEME & PALETTE SYSTEM (Themes: 1 & 4)
+// Theme 1: Cyber Emerald (Default)
+// Theme 4: Obsidian Coral
 // ============================================
 const themeToggle = document.getElementById('theme-toggle');
 const themeIcon = themeToggle ? themeToggle.querySelector('i') : null;
+const paletteToggle = document.getElementById('palette-toggle');
+const paletteDropdown = document.getElementById('palette-dropdown');
 const body = document.body;
 
+const PALETTE_CLASSES = ['theme-1', 'theme-2', 'theme-3', 'theme-4', 'theme-5', 'theme-6', 'theme-7'];
+
+function applyPalette(paletteNum, persist = true) {
+  const targetId = String(paletteNum) === '4' ? '4' : '1';
+  
+  // Clean all previous theme classes and apply selected
+  PALETTE_CLASSES.forEach(cls => body.classList.remove(cls));
+  body.classList.add(`theme-${targetId}`);
+
+  // Update active state on both desktop dropdown and mobile palette buttons
+  document.querySelectorAll('[data-theme-target]').forEach(btn => {
+    const isActive = String(btn.dataset.themeTarget) === targetId;
+    btn.classList.toggle('active', isActive);
+  });
+
+  if (persist) {
+    localStorage.setItem('portfolio-theme-palette', targetId);
+  }
+}
+
+// Attach event listeners to all palette buttons (desktop & mobile)
+document.querySelectorAll('[data-theme-target]').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = btn.dataset.themeTarget;
+    if (target) {
+      applyPalette(target, true);
+    }
+  });
+});
+
+// Palette Dropdown Toggle
+if (paletteToggle && paletteDropdown) {
+  paletteToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = paletteDropdown.classList.toggle('show');
+    paletteToggle.classList.toggle('is-open', isOpen);
+    paletteToggle.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  // Close dropdown on outside click
+  document.addEventListener('click', (e) => {
+    if (!paletteDropdown.contains(e.target) && !paletteToggle.contains(e.target)) {
+      paletteDropdown.classList.remove('show');
+      paletteToggle.classList.remove('is-open');
+      paletteToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Close dropdown on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && paletteDropdown.classList.contains('show')) {
+      paletteDropdown.classList.remove('show');
+      paletteToggle.classList.remove('is-open');
+      paletteToggle.setAttribute('aria-expanded', 'false');
+      paletteToggle.focus();
+    }
+  });
+}
+
+// Dark / Light Mode Toggle
 const savedTheme = localStorage.getItem('theme');
 const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
 const currentTheme = savedTheme || (prefersLight ? 'light' : 'dark');
@@ -33,6 +97,11 @@ if (themeToggle && themeIcon) {
     }
   });
 }
+
+// Initialize saved palette
+const savedPalette = localStorage.getItem('portfolio-theme-palette') || '1';
+applyPalette(savedPalette, false);
+
 
 // ============================================
 // SCROLL PROGRESS BAR & NAVBAR ELEVATION
@@ -359,7 +428,7 @@ async function initGitHubActivity() {
             }
           });
         }
-      } catch (_) {}
+      } catch (_) { }
 
       const total = days.reduce((acc, d) => acc + (d.count || 0), 0);
 
