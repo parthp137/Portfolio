@@ -99,6 +99,33 @@
       <div class="nav-actions">
         <a href="#contact" class="nav-cta-btn">Let's Talk</a>
 
+        <div class="palette-dropdown-wrapper">
+          <button id="palette-toggle" class="palette-toggle" aria-label="Choose Theme Palette" title="Choose Theme Palette" aria-expanded="false" aria-haspopup="true">
+            <i class="fas fa-palette"></i>
+          </button>
+          <div class="palette-dropdown" id="palette-dropdown" role="menu" aria-label="Theme Palettes">
+            <div class="palette-dropdown-header">
+              <i class="fas fa-swatchbook"></i> Color Palettes
+            </div>
+            <div class="palette-options">
+              <button class="palette-option active" data-theme-target="1" role="menuitem">
+                <span class="palette-option-left">
+                  <span class="palette-swatches"><span style="background:#0c0d10"></span><span style="background:#37ff8b"></span></span>
+                  <span class="palette-name">Cyber Emerald</span>
+                </span>
+                <i class="fas fa-check palette-check"></i>
+              </button>
+              <button class="palette-option" data-theme-target="4" role="menuitem">
+                <span class="palette-option-left">
+                  <span class="palette-swatches"><span style="background:#0d1b2a"></span><span style="background:#ff5d5d"></span></span>
+                  <span class="palette-name">Obsidian Coral</span>
+                </span>
+                <i class="fas fa-check palette-check"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
         <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
           <i class="fas fa-moon"></i>
         </button>
@@ -135,6 +162,20 @@
             <span>Certifications</span></a></li>
         <li><a href="#contact" class="mobile-link"><i class="fas fa-paper-plane"></i> <span>Contact</span></a></li>
       </ul>
+
+      <div class="mobile-palette-section">
+        <div class="mobile-palette-title"><i class="fas fa-swatchbook"></i> Themes</div>
+        <div class="mobile-palette-grid">
+          <button class="mobile-palette-btn active" data-theme-target="1">
+            <span class="palette-swatches"><span style="background:#0c0d10"></span><span style="background:#37ff8b"></span></span>
+            <span>Cyber Emerald</span>
+          </button>
+          <button class="mobile-palette-btn" data-theme-target="4">
+            <span class="palette-swatches"><span style="background:#0d1b2a"></span><span style="background:#ff5d5d"></span></span>
+            <span>Obsidian Coral</span>
+          </button>
+        </div>
+      </div>
 
       <div class="mobile-nav-footer">
         <a href="certificates/Parth_Patwardhan_Resume.pdf" target="_blank" rel="noopener noreferrer"
@@ -312,11 +353,13 @@
                 </p>
               </div>
               <div class="projects__links">
-                <a href="https://github.com/parthp137/SplitsVilla" target="_blank" rel="noopener noreferrer" class="projects__link">
+                <a href="https://github.com/parthp137/SplitsVilla" target="_blank" rel="noopener noreferrer"
+                  class="projects__link">
                   <i class="fab fa-github"></i> GitHub <span class="projects__link-arrow" aria-hidden="true">↗</span>
                 </a>
                 <a href="#" class="projects__link" aria-disabled="true" onclick="event.preventDefault()">
-                  <i class="fas fa-arrow-up-right-from-square"></i> Live Demo <span class="projects__link-arrow" aria-hidden="true">↗</span>
+                  <i class="fas fa-arrow-up-right-from-square"></i> Live Demo <span class="projects__link-arrow"
+                    aria-hidden="true">↗</span>
                 </a>
               </div>
             </div>
@@ -324,15 +367,18 @@
             <div class="projects__body">
               <div class="projects__block">
                 <span class="projects__label">Problem</span>
-                <p>Coordinating group stays and multi-currency expense splitting across disconnected tools leads to messy balance debts and fragmented travel plans.</p>
+                <p>Coordinating group stays and multi-currency expense splitting across disconnected tools leads to
+                  messy balance debts and fragmented travel plans.</p>
               </div>
               <div class="projects__block">
                 <span class="projects__label">Solution</span>
-                <p>Engineered full-stack group travel hub featuring real-time Socket.io collaborative voting, automated debt minimization algorithms, and Claude API for budget estimation.</p>
+                <p>Engineered full-stack group travel hub featuring real-time Socket.io collaborative voting, automated
+                  debt minimization algorithms, and Claude API for budget estimation.</p>
               </div>
               <div class="projects__block">
                 <span class="projects__label">Impact</span>
-                <p>Dramatically reduces inter-member transactions with automated reconciliation, instant room-level booking sync, and AI-driven personalized recommendations.</p>
+                <p>Dramatically reduces inter-member transactions with automated reconciliation, instant room-level
+                  booking sync, and AI-driven personalized recommendations.</p>
               </div>
             </div>
 
@@ -363,11 +409,13 @@
                 </p>
               </div>
               <div class="projects__links">
-                <a href="https://github.com/parthp137/CareSync" target="_blank" rel="noopener noreferrer" class="projects__link">
+                <a href="https://github.com/parthp137/CareSync" target="_blank" rel="noopener noreferrer"
+                  class="projects__link">
                   <i class="fab fa-github"></i> GitHub <span class="projects__link-arrow" aria-hidden="true">↗</span>
                 </a>
                 <a href="#" class="projects__link" aria-disabled="true" onclick="event.preventDefault()">
-                  <i class="fas fa-arrow-up-right-from-square"></i> Live Demo <span class="projects__link-arrow" aria-hidden="true">↗</span>
+                  <i class="fas fa-arrow-up-right-from-square"></i> Live Demo <span class="projects__link-arrow"
+                    aria-hidden="true">↗</span>
                 </a>
               </div>
             </div>
@@ -375,15 +423,18 @@
             <div class="projects__body">
               <div class="projects__block">
                 <span class="projects__label">Problem</span>
-                <p>Patients face difficulty determining emergency urgency, while healthcare facilities face overcrowding from non-critical manual walk-ins.</p>
+                <p>Patients face difficulty determining emergency urgency, while healthcare facilities face overcrowding
+                  from non-critical manual walk-ins.</p>
               </div>
               <div class="projects__block">
                 <span class="projects__label">Solution</span>
-                <p>FastAPI triage backend integrating LLM inferences with rule-based safety overrides, weighted urgency ranking, and fallback geolocation resolution.</p>
+                <p>FastAPI triage backend integrating LLM inferences with rule-based safety overrides, weighted urgency
+                  ranking, and fallback geolocation resolution.</p>
               </div>
               <div class="projects__block">
                 <span class="projects__label">Impact</span>
-                <p>Delivers deterministic safety fail-safes and structured diagnostic recommendations; awarded 1st Place at InnovateYou Techathon 3.0.</p>
+                <p>Delivers deterministic safety fail-safes and structured diagnostic recommendations; awarded 1st Place
+                  at InnovateYou Techathon 3.0.</p>
               </div>
             </div>
 
@@ -414,11 +465,13 @@
                 </p>
               </div>
               <div class="projects__links">
-                <a href="https://github.com/parthp137/Live-Proof" target="_blank" rel="noopener noreferrer" class="projects__link">
+                <a href="https://github.com/parthp137/Live-Proof" target="_blank" rel="noopener noreferrer"
+                  class="projects__link">
                   <i class="fab fa-github"></i> GitHub <span class="projects__link-arrow" aria-hidden="true">↗</span>
                 </a>
                 <a href="#" class="projects__link" aria-disabled="true" onclick="event.preventDefault()">
-                  <i class="fas fa-arrow-up-right-from-square"></i> Live Demo <span class="projects__link-arrow" aria-hidden="true">↗</span>
+                  <i class="fas fa-arrow-up-right-from-square"></i> Live Demo <span class="projects__link-arrow"
+                    aria-hidden="true">↗</span>
                 </a>
               </div>
             </div>
@@ -426,15 +479,18 @@
             <div class="projects__body">
               <div class="projects__block">
                 <span class="projects__label">Problem</span>
-                <p>Traditional image CAPTCHAs frustrate legitimate users while automated scripts frequently bypass simple bot detection filters.</p>
+                <p>Traditional image CAPTCHAs frustrate legitimate users while automated scripts frequently bypass
+                  simple bot detection filters.</p>
               </div>
               <div class="projects__block">
                 <span class="projects__label">Solution</span>
-                <p>Trained Logistic Regression behavioral verification model utilizing 7 client-side telemetry signals with explainable confidence outputs.</p>
+                <p>Trained Logistic Regression behavioral verification model utilizing 7 client-side telemetry signals
+                  with explainable confidence outputs.</p>
               </div>
               <div class="projects__block">
                 <span class="projects__label">Impact</span>
-                <p>Zero-friction user experience with session-scoped privacy-first architecture and deterministic rule fallback against synthetic bot attacks.</p>
+                <p>Zero-friction user experience with session-scoped privacy-first architecture and deterministic rule
+                  fallback against synthetic bot attacks.</p>
               </div>
             </div>
 
@@ -604,7 +660,8 @@
             </span>
           </h2>
           <p class="section-description">
-            Where I compete, build under pressure, and lead technical initiatives across hackathons and campus ecosystems.
+            Where I compete, build under pressure, and lead technical initiatives across hackathons and campus
+            ecosystems.
           </p>
         </div>
 
@@ -625,7 +682,8 @@
                   </div>
                   <p class="experience__org">InnovateYou Techathon 3.0 · AISSMS, Pune</p>
                   <p class="experience__detail">
-                    National 24-hour hackathon; secured 1st place for hybrid AI + rule-based healthcare triage decision platform. Awarded ₹10,000 cash prize, trophy, and certificates.
+                    National 24-hour hackathon; secured 1st place for hybrid AI + rule-based healthcare triage decision
+                    platform. Awarded ₹10,000 cash prize, trophy, and certificates.
                   </p>
                 </div>
               </li>
@@ -640,7 +698,8 @@
                   </div>
                   <p class="experience__org">TrustAI Ideathon · IIIT Pune (AI Impact Summit 2026)</p>
                   <p class="experience__detail">
-                    Selected among 600+ national teams for engineering robust LLM safety evaluation and verification pipelines.
+                    Selected among 600+ national teams for engineering robust LLM safety evaluation and verification
+                    pipelines.
                   </p>
                 </div>
               </li>
@@ -655,7 +714,8 @@
                   </div>
                   <p class="experience__org">Udyamotsav · AICTE &amp; MoE Innovation Cell, MIT-WPU</p>
                   <p class="experience__detail">
-                    Shortlisted among 10,000+ national registrations for scalable software product prototype and architecture pitch.
+                    Shortlisted among 10,000+ national registrations for scalable software product prototype and
+                    architecture pitch.
                   </p>
                 </div>
               </li>
@@ -695,7 +755,7 @@
 
           <article class="cert-card fade-up">
             <i class="fas fa-certificate cert-icon"></i>
-            <h3>ChatGPT Prompt Engineering</h3>
+            <h3>Prompt Engineering</h3>
             <p class="cert-org">DeepLearning.AI (with OpenAI)</p>
             <p class="cert-year">Issued Sep 2025</p>
             <p class="cert-skill">Skills: Generative AI</p>
